@@ -331,7 +331,7 @@ private Properties prop = new Properties();
 			pstmt.setString(3, cbr.getContent());
 			pstmt.setInt(4, cbr.getLevel());
 			
-			System.out.println(cbr.getMemberid());
+			System.out.println(pstmt);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

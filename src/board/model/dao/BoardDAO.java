@@ -87,6 +87,7 @@ public class BoardDAO {
 			result = pstmt.executeUpdate();
 			
 			//System.out.println("result@dao="+result);
+			System.out.println(pstmt);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -137,6 +138,7 @@ public class BoardDAO {
 			pstmt.setInt(8, newRoom.getFee());
 			
 			result = pstmt.executeUpdate();
+			System.out.println(pstmt);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -182,6 +184,7 @@ public class BoardDAO {
 
 			result = pstmt.executeUpdate();
 			
+			System.out.println(pstmt);
 			//System.out.println("RoomImg@dao="+result);
 			
 		} catch (SQLException e) {
@@ -209,6 +212,7 @@ public class BoardDAO {
 			
 			//쿼리문실행
 			//완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			System.out.println(pstmt);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()){
@@ -542,6 +546,8 @@ public class BoardDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,"%"+location+"%");
 			
+			
+			System.out.println(pstmt);
 			rset = pstmt.executeQuery();
 			if(rset.next())
 				totalContents = rset.getInt("total_contents");
