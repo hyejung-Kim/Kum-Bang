@@ -57,9 +57,9 @@ public class CommunityService {
 		return result;
 	}
 	
-	public CommunityLike selectLikeOne(int board_num, String memberId) {
+	public CommunityLike selectLikeOne(int boardnum, String memberId) {
 		Connection conn = getConnection();
-		CommunityLike cl= new CommunityDAO().selectLikeOne(conn, board_num, memberId);
+		CommunityLike cl= new CommunityDAO().selectLikeOne(conn, boardnum, memberId);
 		close(conn);
 		return cl;
 	}

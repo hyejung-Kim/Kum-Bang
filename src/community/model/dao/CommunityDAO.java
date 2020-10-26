@@ -54,7 +54,7 @@ private Properties prop = new Properties();
 			while(rset.next()) {
 				ComBoard cb = new ComBoard();
 				
-				cb.setboardnum(rset.getInt("board_num"));
+				cb.setboardnum(rset.getInt("boardnum"));
 				cb.setMemberid(rset.getString("member_id"));
 				cb.setTitle(rset.getString("title"));
 				cb.setContent(rset.getString("content"));
@@ -89,7 +89,7 @@ private Properties prop = new Properties();
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
 				cb = new ComBoard();
-				cb.setboardnum(rset.getInt("board_num"));
+				cb.setboardnum(rset.getInt("boardnum"));
 				cb.setMemberid(rset.getString("member_id"));
 				cb.setTitle(rset.getString("title"));
 				cb.setContent(rset.getString("content"));
@@ -167,7 +167,7 @@ private Properties prop = new Properties();
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				boardnum = rset.getInt("board_num");
+				boardnum = rset.getInt("boardnum");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -180,7 +180,7 @@ private Properties prop = new Properties();
 		return boardnum;
 	}
 	
-	public CommunityLike selectLikeOne(Connection conn, int board_num, String memberId) {
+	public CommunityLike selectLikeOne(Connection conn, int boardnum, String memberId) {
 		CommunityLike cl = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -189,13 +189,13 @@ private Properties prop = new Properties();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberId);
-			pstmt.setInt(2, board_num);
+			pstmt.setInt(2, boardnum);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
 				cl = new CommunityLike();
 				cl.setMemberId(rset.getString("member_id"));
-				cl.setBoard_num(rset.getInt("board_num"));
+				cl.setBoard_num(rset.getInt("boardnum"));
 				cl.setLike(rset.getString("like"));
 			}
 		} catch (Exception e) {
@@ -273,7 +273,7 @@ private Properties prop = new Properties();
 			list = new ArrayList<>();
 			while(rset.next()) {
 				ComBoard cb = new ComBoard();
-				cb.setboardnum(rset.getInt("board_num"));
+				cb.setboardnum(rset.getInt("boardnum"));
 				cb.setMemberid(rset.getString("member_id"));
 				cb.setTitle(rset.getString("title"));
 				cb.setContent(rset.getString("content"));
@@ -358,12 +358,12 @@ private Properties prop = new Properties();
 			while(rset.next()) {
 				cbr = new ComBoardReply();
 
-				cbr.setRepnum(rset.getInt("rep_num"));
-				cbr.setLevel(rset.getInt("LEVEL"));
+				cbr.setRepnum(rset.getInt("repnum"));
+				cbr.setLevel(rset.getInt("level"));
 				cbr.setMemberid(rset.getString("member_id"));
 				cbr.setContent(rset.getString("content"));
-				cbr.setBoardnum(rset.getInt("board_num"));
-				cbr.setRepref(rset.getInt("rep_ref"));
+				cbr.setBoardnum(rset.getInt("boardnum"));
+				cbr.setRepref(rset.getInt("repref"));
 				cbr.setRecommend(rset.getInt("recommend"));
 				cbr.setEnrolldate(rset.getDate("enrolldate"));
 				
@@ -431,12 +431,12 @@ private Properties prop = new Properties();
 			while(rset.next()) {
 				cbr = new ComBoardReply();
 
-				cbr.setRepnum(rset.getInt("rep_num"));
+				cbr.setRepnum(rset.getInt("repnum"));
 				cbr.setLevel(rset.getInt("LEVEL"));
 				cbr.setMemberid(rset.getString("member_id"));
 				cbr.setContent(rset.getString("content"));
-				cbr.setBoardnum(rset.getInt("board_num"));
-				cbr.setRepref(rset.getInt("rep_ref"));
+				cbr.setBoardnum(rset.getInt("boardnum"));
+				cbr.setRepref(rset.getInt("repref"));
 				cbr.setRecommend(rset.getInt("recommend"));
 				cbr.setEnrolldate(rset.getDate("enrolldate"));
 				
@@ -463,7 +463,7 @@ private Properties prop = new Properties();
 			while(rset.next()) {
 				ComBoard cb = new ComBoard();
 				
-				cb.setboardnum(rset.getInt("board_num"));
+				cb.setboardnum(rset.getInt("boardnum"));
 				cb.setMemberid(rset.getString("member_id"));
 				cb.setTitle(rset.getString("title"));
 				cb.setContent(rset.getString("content"));
