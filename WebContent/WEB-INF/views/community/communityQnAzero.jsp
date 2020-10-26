@@ -9,7 +9,7 @@
 %>
 
 <div class="nav-bar">
-	<a href="<%=request.getContextPath()%>/community/communityQnA" class="community-nav">질문과 답변</a>
+	<a href="<%=request.getContextPath()%>/community/communityQnA" class="community-nav">커뮤니티</a>
 </div>
 
 <!-- content -->
@@ -31,7 +31,7 @@
 							</div>
 						</div>
 						<div class="questions-filter__actions">
-							<a class="set-reply btn btn-normal btn-sm" href="<%= request.getContextPath() %>/community/communityQnA"> 모든 질문 보기</a> <a class="questions-filter__actions__new-question btn btn-priority btn-sm" href="<%=request.getContextPath()%>/community/communityQuestion">질문하기</a>
+							<a class="set-reply btn btn-normal btn-sm" href="<%= request.getContextPath() %>/community/communityQnA">모든 게시글 보기</a> <a class="questions-filter__actions__new-question btn btn-priority btn-sm" href="<%=request.getContextPath()%>/community/communityQuestion">질문하기</a>
 						</div>
 					</div>
 				</div>

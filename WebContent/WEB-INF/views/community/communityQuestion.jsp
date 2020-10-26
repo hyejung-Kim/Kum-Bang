@@ -24,7 +24,7 @@ function boardValidate(){
 </script>
 
 	<div class="communityNav-bar">
-		<a href="<%=request.getContextPath()%>/community/communityQnA" class="community-nav">질문과 답변</a>
+		<a href="<%=request.getContextPath()%>/community/communityQnA" class="community-nav">커뮤니티</a>
 	</div>
 	<br />
 

@@ -33,12 +33,12 @@ function deleteBoard() {
 }
 </script>
 <div class="nav-bar">
-	<a href="<%=request.getContextPath()%>/community/communityQnA" class="community-nav">질문과 답변</a>
+	<a href="<%=request.getContextPath()%>/community/communityQnA" class="community-nav">커뮤니티</a>
 </div>
 
 	<form action="<%= request.getContextPath() %>/community/like?comboardNo=<%= cb.getboardnum() %>" method="post">
 		<div class="qnaDetail">
-			<h3 class="QuestionAndAnswer" >질문과 답변</h3>
+			<h3 class="QuestionAndAnswer" >커뮤니티</h3>
 			<input type="hidden" name="boardno" value="<%= cb.getboardnum() %>" />
 			<% if(memberLoggedIn != null) { %>
 			<input type="hidden" name="memberId" value="<%= memberLoggedIn.getMemberId() %>" />
@@ -72,8 +72,8 @@ function deleteBoard() {
 	<div id="qnaDetailProfile">
 		<span class="qnaWriterView"> <img class="MemberProfileImg" src="<%=request.getContextPath()%>/images/user.png"> <span class="pnaWriter"><%=cb.getMemberid() %></span>
 		</span>
-		<p>궁금한 것들 물어보세요!</p>
-		<a class="questions-filter__actions__new-question btn btn-priority btn-sm" href="<%=request.getContextPath()%>/community/communityQuestion">질문하러 가기</a>
+		<p>더 많은 사람과 소통하세요!</p>
+		<a class="questions-filter__actions__new-question btn btn-priority btn-sm" href="<%=request.getContextPath()%>/community/communityQuestion">글쓰러 가기</a>
 	</div>
 
 
