@@ -48,7 +48,7 @@ public class MemberLoginServlet extends HttpServlet {
 				
 				//2. 사용자입력값 처리
 				String memberId = request.getParameter("memberId");
-				String password = Utils.getEncryptedPassword(request.getParameter("password"));
+				String password = request.getParameter("password");
 				String saveId = request.getParameter("saveId");  //체크박스에 별로 value지정이 없다면 on이라고 값이 넘어옴
 //				System.out.println("memberId@servlet="+memberId);
 //				System.out.println("password@servlet="+password);
@@ -58,6 +58,11 @@ public class MemberLoginServlet extends HttpServlet {
 				//3. 업무로직
 				Member m = new MemberService().selectOne(memberId);
 //				System.out.println(m);
+				
+				System.out.println(m.getMemberId());
+				System.out.println(m.getPassword());
+				System.out.println(memberId);
+				System.out.println(password);
 				
 				//4. 응답처리
 				//아이디, 비번이 모두 일치하는 경우 

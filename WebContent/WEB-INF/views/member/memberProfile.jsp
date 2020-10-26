@@ -399,7 +399,6 @@ conversation.setAttributes({
 	
 	<div class="edit-info1">
 		<section class="edit-infoPage">
-			<input type="button" id=deleteMem value="탈퇴하기" onclick="deleteMember();">
 			<p>회원정보 수정</p>
 			<form action="<%=request.getContextPath() %>/member/deleteMember" name="deleteMemberFrm" method="POST">
 				<input type="hidden" name="memberId" value="<%=memberLoggedIn.getMemberId() %>" />
@@ -432,6 +431,7 @@ conversation.setAttributes({
 				<div class="editBtn">
 					<input type="submit" value="회원정보수정" >
 					<input type="reset" value="초기화">
+					<input type="button" id=deleteMem value="탈퇴하기" onclick="deleteMember();">
 				</div>
 			</form>
 		</section>

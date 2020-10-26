@@ -47,6 +47,7 @@ public class MemberDAO {
 			pstmt.setString(1, memberId);
 			//쿼리문실행
 			//완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()){

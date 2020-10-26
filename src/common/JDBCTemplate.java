@@ -25,10 +25,10 @@ public class JDBCTemplate {
 			String user = prop.getProperty("user");
 			String password = prop.getProperty("password");
 			
-//			System.out.println(driver);
-//			System.out.println(url);
-//			System.out.println(user);
-//			System.out.println(password);
+			System.out.println(driver);
+			System.out.println(url);
+			System.out.println(user);
+			System.out.println(password);
 			
 			//드라이버 클래스 등록
 			Class.forName(driver);
@@ -36,9 +36,11 @@ public class JDBCTemplate {
 			//Connection객체 생성
 			conn = DriverManager.getConnection(url, user, password); 
 			conn.setAutoCommit(false); 
+			System.out.println("디비연결성공");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("디비연결실패");
 		}
 		
 		return conn;

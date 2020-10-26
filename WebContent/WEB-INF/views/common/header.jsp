@@ -140,7 +140,7 @@ $(document).ready(function(){
 <body>
 	<header class="navbar navbar-expand" id="mainNav">
 		<div class="container">
-			<a href="<%=request.getContextPath()%>" class="navbar-brand">다모아방</a>
+			<a href="<%=request.getContextPath()%>" class="navbar-brand">금방</a> 대학생 방구하기
 			<div class="navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav">
 
