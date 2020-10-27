@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/brokerHeader.jsp" %>	
 		<section id="search-banner">
-			<p class="banner-text">
-				<span style="font-weight: bold;">진실의 방</span>
-				을
-			</p>
-			<p class="banner-text">구하고 계신가요?</p>
+<p class="banner-text" style="font-size: 30px" >대학생을 위한 방을 구하고 계신가요?</p>
+	<br>
+	<p class="banner-text">
+		<span style="font-weight: bold; font-size: 60px">금방</span>
+	</p>
 			<form action="<%= request.getContextPath() %>/board/searchLocationRoom" class="main-search-frm">
 				<div class="main-search">
 					<input type="text" name="localSearch" id="keyword" placeholder="지역을 입력해 주세요" />
