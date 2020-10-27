@@ -50,7 +50,7 @@
 	<form action="<%= request.getContextPath() %>/board/searchLocationRoom"
 		id="map-searchFrm">
 		<input type="text" name="localSearch" id="localSearch"
-			placeholder="지역별 검색">
+			placeholder="키워드 검색">
 		<button type="submit" class="room-searchBtn">검색</button>
 	</form>
 	<section class="RoomInsert">
@@ -116,32 +116,8 @@
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4120f12d95cc4f5578582277470d4fc9&libraries=services,clusterer,drawing""></script>
 
-<%-- 		//주소-좌표 변환 객체를 생성합니다
-		var geocoder = new kakao.maps.services.Geocoder();
-
-		//주소로 좌표를 검색합니다
-		geocoder.addressSearch('<%= location %>', function(result, status) {
-
-		// 정상적으로 검색이 완료됐으면 
-		 if (status === kakao.maps.services.Status.OK) {
-
-		    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-		    // 결과값으로 받은 위치를 마커로 표시합니다
-		    var marker = new kakao.maps.Marker({
-		        map: map,
-		        position: coords
-		    });
-
-
-		    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-		    map.setCenter(coords);
-		} 
-		});   --%>  
-
-
 <script>
-// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+//마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -153,11 +129,22 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
 
+//일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+var mapTypeControl = new kakao.maps.MapTypeControl();
+
+// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+var zoomControl = new kakao.maps.ZoomControl();
+map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places(); 
 
 // 키워드로 장소를 검색합니다
-ps.keywordSearch('<%= location %>', placesSearchCB); 
+ps.keywordSearch('<%=location%>', placesSearchCB); 
 
 // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 function placesSearchCB (data, status, pagination) {
@@ -168,7 +155,7 @@ function placesSearchCB (data, status, pagination) {
         var bounds = new kakao.maps.LatLngBounds();
 
         for (var i=0; i<data.length; i++) {
-            displayMarker(data[i]);    
+            //displayMarker(data[i]);    
             bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
         }       
 
@@ -177,7 +164,7 @@ function placesSearchCB (data, status, pagination) {
     } 
 }
 
-// 지도에 마커를 표시하는 함수입니다
+/* // 지도에 마커를 표시하는 함수입니다
 function displayMarker(place) {
     
     // 마커를 생성하고 지도에 표시합니다
@@ -192,7 +179,7 @@ function displayMarker(place) {
         infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
         infowindow.open(map, marker);
     });
-}
+} */
 </script>
 
 <script>

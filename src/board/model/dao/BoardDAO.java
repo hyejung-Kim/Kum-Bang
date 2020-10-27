@@ -207,8 +207,8 @@ public class BoardDAO {
 			pstmt = conn.prepareStatement(query);
 			
 			//시작 rownum과 마지막 rownum 구하는 공식
-			pstmt.setInt(1, (cPage-1)*numPerPage+1);
-			pstmt.setInt(2, cPage*numPerPage);
+//			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+//			pstmt.setInt(2, cPage*numPerPage);
 			
 			//쿼리문실행
 			//완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
@@ -229,8 +229,9 @@ public class BoardDAO {
 				b.setOk(rset.getString("ok"));
 				list.add(b);
 			}
+			
 		}catch(Exception e){
-			//e.printStackTrace();
+			e.printStackTrace();
 			throw new BoardException("로그인 후 이용해주세요",e);
 		}finally{
 			close(rset);

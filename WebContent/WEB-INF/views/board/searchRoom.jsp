@@ -60,14 +60,14 @@
             <h2>전체 게시글 : <%= cnt %>개</h2>
 	 <% 
 	 if(list == null || list.isEmpty()){ %>           
-         	<%--조회된 행이 없는 경우 --%>
+      <%--    	조회된 행이 없는 경우
 				<div>조회된 행이 없습니다.</div>
 		<% 
 			} 
 		   	else {
 				for(RoomBoard b : list){
 		%>  
-		<%--조회된 행이 있는 경우 --%> 
+		조회된 행이 있는 경우 
             
                <div>
 		                <% if(b.getOk().equals("T")){ %>
@@ -92,7 +92,47 @@
 				
 		<div id='pageBar'>
 			<%= pageBar %>
-		</div>
+		</div> --%>
+		
+		<div>조회된 행이 없습니다.</div>
+	<% 
+			} 
+		   	else {
+				for(RoomBoard b : list){
+		%>
+
+	<div>
+		<% if(b.getOk().equals("T")){ %>
+
+		<a
+			href="<%= request.getContextPath() %>/board/boardView?board_num=<%= b.getBoard_num() %>&br=<%= b.getBr_cp_id() %>">
+			<img
+			src="<%=request.getContextPath()%>/upload/board/<%=b.getRenameName() %>"
+			onerror="this.src='<%= request.getContextPath() %>/images/roomImg01.jpg'">
+		</a>
+		<% } else{ %>
+		<input
+			<%= memberLoggedIn.getMemberRole().equals("A") ? "type='button'" : "type='hidden'" %>
+			class="okBtn" value="<%= b.getBoard_num() %>"
+			style="z-index: 10; cursor: pointer; width: 400px; height: 280px; background-color: rgba(0, 0, 0, 0.1); border: none; color: rgba(0, 0, 0, 0); position: absolute; margin: 0;" />
+		<img
+			src="<%=request.getContextPath()%>/upload/board/<%=b.getRenameName() %>"
+			onerror="this.src='<%= request.getContextPath() %>/images/roomImg01.jpg'"
+			<%= memberLoggedIn.getMemberRole().equals("A") ? "" : "onclick='alret();'" %>
+			style="filter: brightness(50%); cursor: pointer;">
+
+		<% } %>
+		<br> <input type="text" value="등록날짜  <%= b.getEnrolldate() %>">
+		<br />
+		<%= b.getBoard_title() %>
+	</div>
+	<% 		}
+				
+					} 
+				%>
+	<div id='pageBar'>
+		<%= pageBar %>
+	</div>
 		
 		
 	</div>

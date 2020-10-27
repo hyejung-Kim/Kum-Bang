@@ -125,7 +125,7 @@ $(document).ready(function(){
 		<!-- 헤더 -->
 		<header class="navbar navbar-expand" id="mainNav">
 			<div class="container">
-				<a href="<%=request.getContextPath() %>" class="navbar-brand">다모아방</a>
+				<a href="<%=request.getContextPath() %>" class="navbar-brand">금방</a>
 				<div class="navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav">
 						<% if(brokerLoggedIn == null) { %>

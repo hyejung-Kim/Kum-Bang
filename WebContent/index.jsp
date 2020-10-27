@@ -10,7 +10,7 @@
 	</p>
 	<form action="<%= request.getContextPath() %>/board/searchLocationRoom" class="main-search-frm">
 		<div class="main-search">
-			<input type="text" name="localSearch" id="keyword" placeholder="지역을 입력해 주세요" />
+			<input type="text" name="localSearch" id="keyword" placeholder="키워드를 입력해 주세요" />
 			<button type="submit" class="searchBtn">방 찾기</button>
 		</div>
 	</form>
