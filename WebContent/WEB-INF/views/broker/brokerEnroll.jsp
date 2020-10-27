@@ -54,7 +54,7 @@
 				<tr>
 					<th>중개사 가입일자</th>
 					<td>	
-					<input type="date" name="joindate" id="joindate" ><br />
+					<input type="date" class="input-field2" name="joindate" id="joindate" placeholder="(-포함)2020-01-01"><br />
 					</td>
 				</tr> 
 				<tr>
