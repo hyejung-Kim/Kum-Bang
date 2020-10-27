@@ -31,7 +31,7 @@ function boardValidate(){
 	<section id="questionSection">
 		<form class="QuestionEnrollForm" action="<%=request.getContextPath() %>/community/communityInsert" method="post" enctype="multipart/form-data">
 			<div class="questionHeader">
-				<h2>질문하기<span class="QuestionWriterSpan"><input type="text" name="questionWriter" class="questionWriter" value="<%=memberLoggedIn.getMemberId() %>" readonly/></span></h2>
+				<h2>글쓰기<span class="QuestionWriterSpan"><input type="text" name="questionWriter" class="questionWriter" value="<%=memberLoggedIn.getMemberId() %>" readonly/></span></h2>
 				<input type="text" name="ctitle" class="ctitle1"placeholder="제목을 적어주세요" required/>
 			</div>
 			<br />
@@ -42,7 +42,7 @@ function boardValidate(){
 				<input type="file" name="upfile" class="addPicture"/>
 			</div>
 			<div class="questionButton">
-				<input type="submit" value="질문 저장하기" class="question-btn" onclick="return questionValidate();"/>
+				<input type="submit" value="글 저장하기" class="question-btn" onclick="return questionValidate();"/>
 			</div>
 		</form>
 		</section>

@@ -72,7 +72,7 @@ public class CommunityInsertServlet extends HttpServlet {
 		int result = new CommunityService().insertBoard(cb);
 		
 		String view = "/WEB-INF/views/common/msg.jsp";
-		String msg = result > 0 ? "질문 저장 성공!" : "질문 저장 실패!";
+		String msg = result > 0 ? "글 저장 성공!" : "글 저장 실패!";
 		String loc = "/community/communityQnA";
 		
 		request.setAttribute("msg", msg);
