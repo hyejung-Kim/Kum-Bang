@@ -99,7 +99,8 @@
 		<div id="map" style="width:100%;height:800px;" ></div>
 	</div>
     
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f812560fa3200866e643713203eb962f&libraries=services"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4120f12d95cc4f5578582277470d4fc9&libraries=services,clusterer,drawing""></script>
 <script>
 //방올리기
 $(document).ready(function(){

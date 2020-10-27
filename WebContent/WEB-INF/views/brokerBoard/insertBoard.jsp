@@ -80,7 +80,8 @@
         </form>
 </div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f812560fa3200866e643713203eb962f&libraries=services"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4120f12d95cc4f5578582277470d4fc9&libraries=services,clusterer,drawing""></script>
 <script>
 // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 //var infowindow = new kakao.maps.InfoWindow({zIndex:1});

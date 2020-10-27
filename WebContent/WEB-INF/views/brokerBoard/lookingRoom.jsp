@@ -72,7 +72,7 @@ $(document).ready(function(){
 </div>
 
 <script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4120f12d95cc4f5578582277470d4fc9"></script>
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4120f12d95cc4f5578582277470d4fc9&libraries=services,clusterer,drawing""></script>
 <script>
 		var container = document.getElementById('map');
 		var options = {
