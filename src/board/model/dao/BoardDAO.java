@@ -84,6 +84,7 @@ public class BoardDAO {
 			pstmt.setString(5, newRoomBoard.getRenameName());
 			pstmt.setString(6, newRoomBoard.getOk());
 			
+			System.out.println(pstmt);
 			result = pstmt.executeUpdate();
 			
 			//System.out.println("result@dao="+result);
@@ -137,8 +138,8 @@ public class BoardDAO {
 			pstmt.setDate(7, newRoom.getMovedate());
 			pstmt.setInt(8, newRoom.getFee());
 			
-			result = pstmt.executeUpdate();
 			System.out.println(pstmt);
+			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
