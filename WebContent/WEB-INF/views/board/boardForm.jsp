@@ -11,7 +11,6 @@
 	RoomBoard roomBoard = (RoomBoard)request.getAttribute("roomBoard");
 	Broker br = (Broker)request.getAttribute("broker");
 	List<RoomImage> imgList = (List<RoomImage>)request.getAttribute("imgList");
-	boolean like = (boolean)request.getAttribute("like");
 %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/board.css" />
 
@@ -71,10 +70,6 @@
 		<input type="hidden" id=likeBoardNum name="board_num" value="<%= room.getBoard_num() %>" />
 	</form>
 
-	<div id="roomDetail-LikeAlarm">
-		<img src=<%= like ? "../images/colorHeart.png" : "../images/heart.png" %> id="likeBtn" alt="" />좋아요 
-		<img src="<%=request.getContextPath()%>/images/alert.png" onclick="roomReportBtn();" alt="" />허위매물 신고
-	</div>
 	
 	  <!-- 본인 인증 팝업 -->   
 	    <div id="certificationWrap"></div> 

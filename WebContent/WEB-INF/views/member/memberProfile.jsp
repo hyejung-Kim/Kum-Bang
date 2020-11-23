@@ -2,18 +2,31 @@
 <%@page import="board.model.vo.RoomBoard"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %>
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/member.css" />
+<%@ page import="java.util.*"%>
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/member.css" />
 <%
-
-	List<RoomBoard> likeList = (List<RoomBoard>)request.getAttribute("likeList");
-	String pageBar = (String)request.getAttribute("pageBar");
-	int cnt = (int)request.getAttribute("totalContents");
-	List<ComBoard> comList = (List<ComBoard>)request.getAttribute("comList");
-	int qnaCnt = (int)request.getAttribute("cnt");
+	List<RoomBoard> likeList = (List<RoomBoard>) request.getAttribute("likeList");
+String pageBar = (String) request.getAttribute("pageBar");
+int cnt = (int) request.getAttribute("totalContents");
+List<ComBoard> comList = (List<ComBoard>) request.getAttribute("comList");
+int qnaCnt = (int) request.getAttribute("cnt");
 %>
+
+
 <script>
+
+function pop(img) {
+	 var win = window.open('', 'Detail', 'width=0, height=0, menubar=0, toolbar=0, directories=0, scrollbars=1, status=0, location=0, resizable=1');
+	 op="<html><head><title>크게 보기</title></head>";
+	 op+="<body leftmargin='0' topmargin='0'>";
+	 op+="<img src='"+ img.src +"' border='0' style='cursor:pointer' onclick='window.close();' onload='window.resizeTo(this.width+30, this.height+90); window.moveTo( (screen.width-this.width)/2 ,  (screen.height-this.height)/2-50 )'>";
+	 op+="</body></html>";
+
+	 win.document.write(op);
+	}
+
 $(function(){
 	$("#chatBtn").click(function(){
 		$("#talkjs-container").toggle('show');
@@ -42,6 +55,7 @@ $(function(){
 		$(".mypage-profile3").css("display", "none");
 		$(".sub2").css("display", "block");
 		$(".edit-info2").css("display", "none");
+		$(".edit-info3").css("display", "none");
 		$(".edit-info1").css("display", "block");
 		$(".setting-nav").css("color", "rgb(255, 138, 61)");
 		$(".profile-nav").css("color", "#000");
@@ -85,6 +99,7 @@ $(function(){
 		$(".mypage-Likediv").css("display", "none");
 		$(".edit-info1").css("display", "block");
 		$(".edit-info2").css("display", "none");
+		$(".edit-info3").css("display", "none");
 	});
 	$(".click5").click(function() {
 		$(".mypage-alldiv").css("display", "none");
@@ -92,6 +107,15 @@ $(function(){
 		$(".mypage-Likediv").css("display", "none");
 		$(".edit-info2").css("display", "block");
 		$(".edit-info1").css("display", "none");
+		$(".edit-info3").css("display", "none");
+	});
+	$(".click6").click(function() {
+		$(".mypage-alldiv").css("display", "none");
+		$(".mypage-questiondiv").css("display", "none");
+		$(".mypage-Likediv").css("display", "none");
+		$(".edit-info3").css("display", "block");
+		$(".edit-info1").css("display", "none");
+		$(".edit-info2").css("display", "none");
 	});
 });
 $(function(){
@@ -117,14 +141,12 @@ $("#file").on('change',function(){
 	  var fileName = $("#file").val();
 	  $(".upload-name").val(fileName);
 });
-
-let userName = "<%=memberLoggedIn.getMemberId().equals("dddd") ? "상담사" : "유저" %>";
+let userName = "<%=memberLoggedIn.getMemberId().equals("dddd") ? "상담사" : "유저"%>";
 /* talkJS */
 (function(t,a,l,k,j,s){
 s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";a.head.appendChild(s)
 ;k=t.Promise;t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});l
 .push([f])},catch:function(){return k&&new k()},c:l}};})(window,document,[]);
-
 Talk.ready.then(function() {
     var me = new Talk.User({
         id: "<%=memberLoggedIn.getMemberId()%>",
@@ -144,23 +166,19 @@ Talk.ready.then(function() {
         photoUrl: "http://localhost:9090/web/",
         welcomeMessage: "무엇을 도와드릴까요?"
     });
-
     var conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, other))
     conversation.setParticipant(me);
     conversation.setParticipant(other);
-
     if(${memberLoggedIn.getMemberId() eq 'dddd'}){
 	    var inbox = talkSession.createInbox({selected: conversation});
 	    inbox.mount(document.getElementById("talkjs-container"));
     }
     else{
-
         var conversation = window.talkSession.getOrCreateConversation(Talk.oneOnOneId(me, other));
         conversation.setParticipant(me);
         conversation.setParticipant(other);
         var popup = window.talkSession.createPopup(conversation, { keepOpen: false });
         popup.mount({ show: false });
-
         var button = document.getElementById("btn-getInTouch");
         button.addEventListener("click", function(event) {
             event.preventDefault();
@@ -168,7 +186,6 @@ Talk.ready.then(function() {
         });
     }
 });
-
 var other = new Talk.User({
 	 id: "<%=memberLoggedIn.getMemberId()%>",
      name: userName,
@@ -176,300 +193,376 @@ var other = new Talk.User({
      photoUrl: "http://localhost:9090/web/",
      welcomeMessage: "무엇을 도와드릴까요?"
 });
-
 var conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, other));
 conversation.setParticipant(me);
 conversation.setParticipant(other);
-
 var conversation = talkSession.getOrCreateConversation("<%=memberLoggedIn.getMemberId()%>");
-
 conversation.setAttributes({
     subject: "Hair Wax 5 Gallons"
-}); 
+});
 
 
 </script>
-	<div class="mypage-nav-bar">
-		<a class="profile-nav">프로필&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-		<a class="setting-nav">설정</a>
-	</div>
-	<div class="sub1">
-		<a class="click1">모두보기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-		<a class="click2">나의 질문목록</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a class="click3">좋아요</a>
-	</div>
-	<div class="sub2">
-		<a class="click4">회원정보수정</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a class="click5">비밀번호 변경</a>
-	</div>
-	
-	<div>
-		<button id="chatBtn">🧑</button>
-	</div>
-	
-	<!-- TalkJS -->
-    <div id="talkjs-container" style="right:30px;">
-    	<i>Loading chat...</i>
-    </div>
-	
-	<div class="mypage-alldiv">
+
+
+
+<div class="mypage-nav-bar">
+	<a class="profile-nav">프로필&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+	<a class="setting-nav">설정</a>
+</div>
+<div class="sub1">
+	<a class="click1">모두보기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+	<a class="click2">나의 질문목록</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a class="click3">좋아요</a>
+</div>
+<div class="sub2">
+	<a class="click4">회원정보수정</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a class="click5">비밀번호변경</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a class="click6" style="vertical-align: middle;">인증정보수정</a>
+</div>
+
+<div>
+	<button id="chatBtn">🧑</button>
+</div>
+
+<!-- TalkJS -->
+<div id="talkjs-container" style="right: 30px;">
+	<i>Loading chat...</i>
+</div>
+
+<div class="mypage-alldiv">
 	<div class="mypage-profile1_1">
-	<div class="mypage-profile1">
-		<section class="mypage-allView">
-			<form method="post" action="<%=request.getContextPath() %>/member/memberProfile" enctype="multipart/form-data">
-			<table>
-				<tr>
-					<th></th>
-					<td>
-						<img id="profileImg" src="<%= request.getContextPath() %>/upload/member/<%= memberLoggedIn.getProfile() %>" onerror="this.src='<%= request.getContextPath() %>/upload/member/user.png'" alt="profile">
-						
-					</td>
-				</tr>
-				<tr>
-					<th></th>
-					<td >	
-						<input type="text" name = "memberId" class="mypage-id" value="<%=memberLoggedIn.getMemberId() %>" readonly />
-					</td>
-				</tr>
-				<tr>
-					<th></th>
-					<td>
-						<div class="filebox"> 
-							<label for="file" >사진 업로드</label> 
-							<input type="file" id="file" name="profile"> 
-								<!-- <input class="upload-name" value="파일선택">  -->
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th></th>
-					<td>	
-						<input type="submit" value="프로필 변경" />
-					</td>
-				</tr>
-			</table>
-			</form>	
-		</section>
-	</div>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<div class="allview-content" >
-	<div>
-		<p class="myallview-question">나의 질문목록</p>
-		<div class="myquestionState-div">
-		<p class="myStatequestion"><%=memberLoggedIn.getMemberId() %>님은  <%= qnaCnt %>회 질문하셨습니다.</p>
+		<div class="mypage-profile1">
+			<section class="mypage-allView">
+				<form method="post"
+					action="<%=request.getContextPath()%>/member/memberProfile"
+					enctype="multipart/form-data">
+					<table>
+						<tr>
+							<th></th>
+							<td><img id="profileImg"
+								src="<%=request.getContextPath()%>/upload/member/<%=memberLoggedIn.getProfile()%>"
+								onerror="this.src='<%=request.getContextPath()%>/upload/member/user.png'"
+								alt="profile"></td>
+						</tr>
+						<tr>
+							<th></th>
+							<td><input type="text" name="memberId" class="mypage-id"
+								value="<%=memberLoggedIn.getMemberId()%>" readonly /></td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>
+								<div class="filebox">
+									<label for="file">사진 업로드</label> <input type="file" id="file"
+										name="profile">
+									<!-- <input class="upload-name" value="파일선택">  -->
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th></th>
+							<td><input type="submit" value="프로필 변경" /></td>
+						</tr>
+					</table>
+				</form>
+			</section>
 		</div>
-	</div>
-	<div>
-		<p class="myLikelistallview">내가 좋아요한 목록 <span id="conLink1" class="click3">전체보기</span></p>
-		<% 
-		 if(likeList == null || likeList.isEmpty()){ %>           
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<div class="allview-content">
+			<div>
+				<p class="myallview-question">나의 질문목록</p>
+				<div class="myquestionState-div">
+					<p class="myStatequestion"><%=memberLoggedIn.getMemberId()%>님은
+						<%=qnaCnt%>회 질문하셨습니다.
+					</p>
+				</div>
+			</div>
+			<div>
+				<p class="myLikelistallview">
+					내가 좋아요한 목록 <span id="conLink1" class="click3">전체보기</span>
+				</p>
+				<%
+					if (likeList == null || likeList.isEmpty()) {
+				%>
 				<div class="HasnotLikelistallview">좋아요 목록이 없습니다.</div>
-		<% 
-			} 
-		   	else {
-				for(RoomBoard b : likeList){
-		%>
-		<a class="noneHover" href="<%= request.getContextPath() %>/board/boardView?board_num=<%= b.getBoard_num() %>&br=<%= b.getBr_cp_id() %>">
-		<section id="br_itemInfo">
-			<p class="SearchRoomLikeparagraph"><%= b.getBoard_title() %><span class="SearchRoomclickLikeEnrollDate"><%= b.getEnrolldate() %></span></p>
-		</section>
-		</a>
-		<% 		}
-		
-			} 
-		%> 
-	</div>
-		<div class="allviewPageBar" id='pageBar'>
-			<%= pageBar %>
-		</div>
-	</div>
-	</div>
-	</div>
+				<%
+					} else {
+				for (RoomBoard b : likeList) {
+				%>
+				<a class="noneHover"
+					href="<%=request.getContextPath()%>/board/boardView?board_num=<%=b.getBoard_num()%>&br=<%=b.getBr_cp_id()%>">
+					<section id="br_itemInfo">
+						<p class="SearchRoomLikeparagraph"><%=b.getBoard_title()%><span
+								class="SearchRoomclickLikeEnrollDate"><%=b.getEnrolldate()%></span>
+						</p>
+					</section>
+				</a>
+				<%
+					}
 
-	<div class="mypage-questiondiv">
-	<div class="mypage-profile2_2">
-	<div class="mypage-profile2">
-		<section class="mypage-allView">
-			<form method="post" action="<%=request.getContextPath() %>/member/memberProfile" enctype="multipart/form-data">
-			<table>
-				<tr>
-					<th></th>
-					<td>
-						<img id="profileImg" src="<%= request.getContextPath() %>/upload/member/<%= memberLoggedIn.getProfile() %>" onerror="this.src='<%= request.getContextPath() %>/upload/member/user.png'" alt="profile">
-						
-					</td>
-				</tr>
-				<tr>
-					<th></th>
-					<td >	
-						<input type="text" name = "memberId" class="mypage-id" value="<%=memberLoggedIn.getMemberId() %>" readonly />
-					</td>
-				</tr>
-				<tr>
-					<th></th>
-					<td>
-						<div class="filebox"> 
-							<label for="file" >사진 업로드</label> 
-							<input type="file" id="file" name="profile"> 
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th></th>
-					<td>	
-						<input type="submit" value="프로필 변경" />
-					</td>
-				</tr>
-			</table>
-			</form>	
-		</section>
-	</div>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<div class="brokerSales">
-			<p class="memberIdparagraph"><span class="countPercentMemberId"><%= memberLoggedIn.getMemberId() %></span>님은</p>
-			<p>누적 <span class="countPercentMemberId"><%= qnaCnt %>회</span>의 질문을 등록하셨습니다!</p>		
-			<p>상위 <span class="countPercent">3%</span>의 질문왕입니다.</p>		
-		</div>
-	</div>
-	</div>
-
-
-	<div class="mypage-Likediv">
-	<div class="mypage-profile3_3">
-	<div class="mypage-profile3" style="float:left;">
-		<section class="mypage-allView">
-			<form method="post" action="<%=request.getContextPath() %>/member/memberProfile" enctype="multipart/form-data">
-			<table>
-				<tr>
-					<th></th>
-					<td>
-						<img id="profileImg" src="<%= request.getContextPath() %>/upload/member/<%= memberLoggedIn.getProfile() %>" onerror="this.src='<%= request.getContextPath() %>/upload/member/user.png'" alt="profile">
-					</td>
-				</tr>
-				<tr>
-					<th></th>
-					<td >	
-						<input type="text" name = "memberId" class="mypage-id" value="<%=memberLoggedIn.getMemberId() %>" readonly />
-					</td>
-				</tr>
-				<tr>
-					<th></th>
-					<td>
-						<div class="filebox"> 
-							<label for="file" >사진 업로드</label> 
-							<input type="file" id="file" name="profile"> 
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th></th>
-					<td>	
-						<input type="submit" value="프로필 변경" />
-					</td>
-				</tr>
-			</table>
-			</form>	
-		</section>
-	</div>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<div style="width: 900px; height: 800px; width: 850px; display: inline-block; ">
-	<% if(likeList == null || likeList.isEmpty()){ %>           
-	<div class="myLikeListViewCount">
-		<p class="myLikeCountViewtotal">전체 : <%= cnt %>개</p>
-		<div class="hasnotClickLikeboard">좋아요한 게시물이 없습니다.</div>
-	</div>
-<!-- 		<div class="ClickedLikeListShow"> -->
-		<% } else {for(RoomBoard b : likeList){%>
-		<section id="my_pageRoomImg">
-			<a href="<%= request.getContextPath() %>/board/boardView?board_num=<%= b.getBoard_num() %>&br=<%= b.getBr_cp_id() %>" class="image featured"><img src="<%=request.getContextPath()%>/upload/board/<%=b.getRenameName() %>" onerror="this.src='<%= request.getContextPath() %>/images/roomImg01.jpg'" alt=""></a>
-			<p class="myPageRoomImgTitle"><%= b.getBoard_title() %></p>
-			<p id="commuTxtId"><%= b.getContent().length()<19 ? b.getContent() : b.getContent().substring(0,20) %></p>
-			<p id="commuRoomViews"><%= b.getEnrolldate() %></p>
-		</section>
-	<% 		}
-		
-			} 
-		%>
-			<div class="ClickedLikeListPageBar" id='pageBar'>
-				<%= pageBar %>
+				}
+				%>
+			</div>
+			<div class="allviewPageBar" id='pageBar'>
+				<%=pageBar%>
 			</div>
 		</div>
 	</div>
+</div>
+
+<div class="mypage-questiondiv">
+	<div class="mypage-profile2_2">
+		<div class="mypage-profile2">
+			<section class="mypage-allView">
+				<form method="post"
+					action="<%=request.getContextPath()%>/member/memberProfile"
+					enctype="multipart/form-data">
+					<table>
+						<tr>
+							<th></th>
+							<td><img id="profileImg"
+								src="<%=request.getContextPath()%>/upload/member/<%=memberLoggedIn.getProfile()%>"
+								onerror="this.src='<%=request.getContextPath()%>/upload/member/user.png'"
+								alt="profile"></td>
+						</tr>
+						<tr>
+							<th></th>
+							<td><input type="text" name="memberId" class="mypage-id"
+								value="<%=memberLoggedIn.getMemberId()%>" readonly /></td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>
+								<div class="filebox">
+									<label for="file">사진 업로드</label> <input type="file" id="file"
+										name="profile">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th></th>
+							<td><input type="submit" value="프로필 변경" /></td>
+						</tr>
+					</table>
+				</form>
+			</section>
+		</div>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<div class="brokerSales">
+			<p class="memberIdparagraph">
+				<span class="countPercentMemberId"><%=memberLoggedIn.getMemberId()%></span>님은
+			</p>
+			<p>
+				누적 <span class="countPercentMemberId"><%=qnaCnt%>회</span>의 질문을
+				등록하셨습니다!
+			</p>
+			<p>
+				상위 <span class="countPercent">3%</span>의 질문왕입니다.
+			</p>
+		</div>
 	</div>
-	
-	<div class="edit-info1">
-		<section class="edit-infoPage">
-			<p>회원정보 수정</p>
-			<form action="<%=request.getContextPath() %>/member/deleteMember" name="deleteMemberFrm" method="POST">
-				<input type="hidden" name="memberId" value="<%=memberLoggedIn.getMemberId() %>" />
-			</form>
-			<form name="memberUpdateFrm" 
-				  action="<%= request.getContextPath() %>/member/memberUpdate" method="post">
-				<table>
-					<tr>
-						<th>아이디</th>
-						<td>
-							<input type="text" name="memberId" id="memberId_" 
-								   value="<%= memberLoggedIn.getMemberId() %>" readonly required>
-						</td>
-					</tr>
-					<tr>
-						<th>이메일</th>
-						<td>	
-							<input type="email"  name="email" id="email"
-								   value="<%= memberLoggedIn.getEmail() %>"><br>
-						</td>
-					</tr>
-					<tr>
-						<th>전화번호</th>
-						<td>	
-							<input type="tel"  id="userPhone" name="phone"
-								   value="<%= memberLoggedIn.getPhone() %>"><br>
-						</td>
-					</tr>
-				</table>
-				<div class="editBtn">
-					<input type="submit" value="회원정보수정" >
-					<input type="reset" value="초기화">
-					<input type="button" id=deleteMem value="탈퇴하기" onclick="deleteMember();">
-				</div>
-			</form>
-		</section>
+</div>
+
+
+<div class="mypage-Likediv">
+	<div class="mypage-profile3_3">
+		<div class="mypage-profile3" style="float: left;">
+			<section class="mypage-allView">
+				<form method="post"
+					action="<%=request.getContextPath()%>/member/memberProfile"
+					enctype="multipart/form-data">
+					<table>
+						<tr>
+							<th></th>
+							<td><img id="profileImg"
+								src="<%=request.getContextPath()%>/upload/member/<%=memberLoggedIn.getProfile()%>"
+								onerror="this.src='<%=request.getContextPath()%>/upload/member/user.png'"
+								alt="profile"></td>
+						</tr>
+						<tr>
+							<th></th>
+							<td><input type="text" name="memberId" class="mypage-id"
+								value="<%=memberLoggedIn.getMemberId()%>" readonly /></td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>
+								<div class="filebox">
+									<label for="file">사진 업로드</label> <input type="file" id="file"
+										name="profile">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th></th>
+							<td><input type="submit" value="프로필 변경" /></td>
+						</tr>
+					</table>
+				</form>
+			</section>
+		</div>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<div
+			style="width: 900px; height: 800px; width: 850px; display: inline-block;">
+			<%
+				if (likeList == null || likeList.isEmpty()) {
+			%>
+			<div class="myLikeListViewCount">
+				<p class="myLikeCountViewtotal">
+					전체 :
+					<%=cnt%>개
+				</p>
+				<div class="hasnotClickLikeboard">좋아요한 게시물이 없습니다.</div>
+			</div>
+			<!-- 		<div class="ClickedLikeListShow"> -->
+			<%
+				} else {
+			for (RoomBoard b : likeList) {
+			%>
+			<section id="my_pageRoomImg">
+				<a
+					href="<%=request.getContextPath()%>/board/boardView?board_num=<%=b.getBoard_num()%>&br=<%=b.getBr_cp_id()%>"
+					class="image featured"><img
+					src="<%=request.getContextPath()%>/upload/board/<%=b.getRenameName()%>"
+					onerror="this.src='<%=request.getContextPath()%>/images/roomImg01.jpg'"
+					alt=""></a>
+				<p class="myPageRoomImgTitle"><%=b.getBoard_title()%></p>
+				<p id="commuTxtId"><%=b.getContent().length() < 19 ? b.getContent() : b.getContent().substring(0, 20)%></p>
+				<p id="commuRoomViews"><%=b.getEnrolldate()%></p>
+			</section>
+			<%
+				}
+
+			}
+			%>
+			<div class="ClickedLikeListPageBar" id='pageBar'>
+				<%=pageBar%>
+			</div>
+		</div>
 	</div>
-	
-	<div class="edit-info2" >
-		<section class="edit-passwordPage">
-			<p>비밀번호 변경</p>
-			
-			<form name="passwordUpdateFrm" id="passwordUpdateFrm"
-				  action="<%= request.getContextPath() %>/member/updatePassword" method="post">
-				  <input type="hidden" name="memberId" value="<%= memberLoggedIn.getMemberId() %>" />
-				<table>
-					<tr>
-						<th>현재 비밀번호</th>
-						<td>
-							<input type="password" name="password" id="password" required>
-						</td>
-					</tr>
-					<tr>
-						<th>변경 비밀번호</th>
-						<td>	
-							<input type="password" name="newPassword" id="newPassword"><br>
-						</td>
-					</tr>
-					<tr>
-						<th>비밀번호 확인</th>
-						<td>	
-							<input type="password" id="newPasswordCheck" required><br>
-						</td>
-					</tr>
-				</table>
-				<div class="editBtn">
-					<input type="submit" value="비밀번호 변경"  >
-					<input type="reset" value="초기화">
-				
-				</div>
-			</form>
-		</section>
-	</div>
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+</div>
+
+<div class="edit-info1">
+	<section class="edit-infoPage">
+		<p>회원정보 수정</p>
+		<form action="<%=request.getContextPath()%>/member/deleteMember"
+			name="deleteMemberFrm" method="POST">
+			<input type="hidden" name="memberId"
+				value="<%=memberLoggedIn.getMemberId()%>" />
+		</form>
+		<form name="memberUpdateFrm"
+			action="<%=request.getContextPath()%>/member/memberUpdate"
+			method="post">
+			<table>
+				<tr>
+					<th>아이디</th>
+					<td><input type="text" name="memberId" id="memberId_"
+						value="<%=memberLoggedIn.getMemberId()%>" readonly required>
+					</td>
+				</tr>
+				<tr>
+					<th>이메일</th>
+					<td><input type="email" name="email" id="email"
+						value="<%=memberLoggedIn.getEmail()%>"><br></td>
+				</tr>
+				<tr>
+					<th>전화번호</th>
+					<td><input type="tel" id="userPhone" name="phone"
+						value="<%=memberLoggedIn.getPhone()%>"><br></td>
+				</tr>
+			</table>
+			<div class="editBtn">
+				<input type="submit" value="회원정보수정"> <input type="reset"
+					value="초기화"> <input type="button" id=deleteMem value="탈퇴하기"
+					onclick="deleteMember();">
+			</div>
+		</form>
+	</section>
+</div>
+
+<div class="edit-info2">
+	<section class="edit-passwordPage">
+		<p>비밀번호 변경</p>
+
+		<form name="passwordUpdateFrm" id="passwordUpdateFrm"
+			action="<%=request.getContextPath()%>/member/updatePassword"
+			method="post">
+			<input type="hidden" name="memberId"
+				value="<%=memberLoggedIn.getMemberId()%>" />
+			<table>
+				<tr>
+					<th>현재 비밀번호</th>
+					<td><input type="password" name="password" id="password"
+						required></td>
+				</tr>
+				<tr>
+					<th>변경 비밀번호</th>
+					<td><input type="password" name="newPassword" id="newPassword"><br>
+					</td>
+				</tr>
+				<tr>
+					<th>비밀번호 확인</th>
+					<td><input type="password" id="newPasswordCheck" required><br>
+					</td>
+				</tr>
+			</table>
+			<div class="editBtn">
+				<input type="submit" value="비밀번호 변경"> <input type="reset"
+					value="초기화">
+
+			</div>
+		</form>
+	</section>
+</div>
+
+
+
+<div class="edit-info3"
+	style="display: none; border-radius: 15px; clear: both; padding: 20px; margin: 50px auto; box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3); width: 800px; height: 600px;">
+	<section class="edit-certificate"
+		style="text-align: center; font-size: 25px; font-weight: 800; margin-bottom: 40px;">
+		<p>인증정보수정</p>
+
+		<form method="post"
+			action="<%=request.getContextPath()%>/member/updateCertificate"
+			enctype="multipart/form-data">
+			<input type="hidden" name="memberId"
+				value="<%=memberLoggedIn.getMemberId()%>" />
+			<table>
+				<tr>
+					<th></th>
+					<td><img id="certificateImg"
+						style="width: 200px; height: 200px; text-align: center;"
+						src="<%=request.getContextPath()%>/upload/certificate/<%=memberLoggedIn.getCertificate()%>"
+						onerror="this.src='<%=request.getContextPath()%>/upload/certificate/user.png'"
+						alt="certificate" onclick="pop(this)"></td>
+
+
+				</tr>
+				<tr>
+					<th>- 현재 인증서 : <%-- <a href="downloadCertificate.jsp?fileName=<%=memberLoggedIn.getCertificate()%>"> --%><%=memberLoggedIn.getCertificate()%></a></th>
+					<br>
+
+				</tr>
+
+				<tr>
+					<th><label for="file">인증서 찾기</label> <input type="file"
+						name="certificate" class="addPicture" id="file" /></th>
+				</tr>
+				<tr>
+					<td>
+						<div class="editBtn">
+							<input type="submit" value="인증정보 수정"> <input
+								type="submit" value="인증정보 삭제"> <input type="reset"
+								value="초기화">
+
+						</div>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</section>
+</div>
+<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+

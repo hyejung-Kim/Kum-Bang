@@ -125,6 +125,15 @@ public class MemberService {
 		return result;
 	}
 
+	public int updateMemberCertificate(Member m) {
+		Connection conn = getConnection();
+		int result = memberDAO.updateMemberCertificate(conn, m);
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
 	
 
 }

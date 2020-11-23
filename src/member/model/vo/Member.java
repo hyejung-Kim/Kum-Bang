@@ -17,14 +17,16 @@ public class Member implements Serializable, HttpSessionBindingListener{
 	private int outCount;
 	private String profile;
 	private String black;
+	private String certificate;
 	
+
+
 	public Member() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	
-
 	public Member(String memberId, String email, String password, String memberRole, String phone, Date enrollDate,
 			int outCount, String profile,String black) {
 		super();
@@ -37,6 +39,21 @@ public class Member implements Serializable, HttpSessionBindingListener{
 		this.outCount = outCount;
 		this.profile = profile;
 		this.black = black;
+	}
+	
+	public Member(String memberId, String email, String password, String memberRole, String phone, Date enrollDate,
+			int outCount, String profile,String black,String certificate) {
+		super();
+		this.memberId = memberId;
+		this.email = email;
+		this.password = password;
+		this.memberRole = memberRole;
+		this.phone = phone;
+		this.enrollDate = enrollDate;
+		this.outCount = outCount;
+		this.profile = profile;
+		this.black = black;
+		this.certificate = certificate;
 	}
 
 	
@@ -142,6 +159,16 @@ public class Member implements Serializable, HttpSessionBindingListener{
 	public void setBlack(String black) {
 		this.black = black;
 	}
+	
+	public String getCertificate() {
+		return certificate;
+	}
+
+
+	public void setCertificate(String certificate) {
+		this.certificate = certificate;
+	}
+
 
 
 	
@@ -150,7 +177,7 @@ public class Member implements Serializable, HttpSessionBindingListener{
 	public String toString() {
 		return "Member [memberId=" + memberId + ", email=" + email + ", password=" + password + ", memberRole="
 				+ memberRole + ", phone=" + phone + ", enrollDate=" + enrollDate + ", outCount=" + outCount
-				+ ", profile=" + profile + "] , black=" + black + "]";
+				+ ", profile=" + profile + ", certificate=" + certificate + "] , black=" + black + "]";
 	}
 
 

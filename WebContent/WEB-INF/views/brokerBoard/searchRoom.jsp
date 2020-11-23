@@ -106,7 +106,7 @@
 $(document).ready(function(){
     
     $(".roomUpdateBtn").click(function(){
-    	alert("방을 올리시려면 중개인에게 연락해주세요!");
+    	location.href='<%=request.getContextPath()%>/brokerBoard/insertBoard'
     });
 });
 function alret(){

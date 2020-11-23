@@ -32,39 +32,74 @@ public class LookingRoomServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try{
-			//1. 사용자 입력값
-			int numPerPage = 3;
-			int cPage = 1;
-			try {
-				cPage = Integer.parseInt(request.getParameter("cPage"));			
-			}catch(NumberFormatException e) {
-				
-			}
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		try{
+//			//1. 사용자 입력값
+//			int numPerPage = 3;
+//			int cPage = 1;
+//			try {
+//				cPage = Integer.parseInt(request.getParameter("cPage"));			
+//			}catch(NumberFormatException e) {
+//				
+//			}
+//			
+//			//2. 업무로직 : 게시글 목록 조회
+//			//a. contents 영역
+//			List<RoomBoard> list = boardService.selectBoardList(cPage, numPerPage); 
+//			//System.out.println("list@servlet="+list);
+//			
+//			//b. pageBar 영역
+//			int totalContents = boardService.selectBoardCount();
+//			String url = request.getRequestURI() + "?";
+//			String pageBar = Utils.getPageBarHtml(cPage, numPerPage, totalContents, url);
+//			
+//			//3. view단 처리 : boardList.jsp
+//			
+//			request.setAttribute("list", list);
+//			request.setAttribute("pageBar", pageBar);
+//			request.setAttribute("totalContents", totalContents);
+//			
+//			request.getRequestDispatcher("/WEB-INF/views/board/lookingRoom.jsp").forward(request, response);
+//			} catch(Exception e) {
+//			e.printStackTrace();
+//			
+//			throw e;
+//		}
+//	}
+//
+//	/**
+//	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+//	 */
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//	}
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//1. 사용자 입력값
+		int numPerPage = 3;
+		int cPage = 1;
+		try {
+			cPage = Integer.parseInt(request.getParameter("cPage"));			
+		}catch(NumberFormatException e) {
 			
-			//2. 업무로직 : 게시글 목록 조회
-			//a. contents 영역
-			List<RoomBoard> list = boardService.selectBoardList(cPage, numPerPage); 
-			//System.out.println("list@servlet="+list);
-			
-			//b. pageBar 영역
-			int totalContents = boardService.selectBoardCount();
-			String url = request.getRequestURI() + "?";
-			String pageBar = Utils.getPageBarHtml(cPage, numPerPage, totalContents, url);
-			
-			//3. view단 처리 : boardList.jsp
-			
-			request.setAttribute("list", list);
-			request.setAttribute("pageBar", pageBar);
-			request.setAttribute("totalContents", totalContents);
-			
-			request.getRequestDispatcher("/WEB-INF/views/board/lookingRoom.jsp").forward(request, response);
-			} catch(Exception e) {
-			e.printStackTrace();
-			
-			throw e;
 		}
+		
+		//2. 업무로직 : 게시글 목록 조회
+		//a. contents 영역
+		List<RoomBoard> list = boardService.selectBoardList(cPage, numPerPage); 
+		//System.out.println("list@servlet="+list);
+		
+		//b. pageBar 영역
+		int totalContents = boardService.selectBoardCount();
+		String url = request.getRequestURI() + "?";
+		String pageBar = Utils.getPageBarHtml(cPage, numPerPage, totalContents, url);
+		
+		//3. view단 처리 : boardList.jsp
+		
+		request.setAttribute("list", list);
+		request.setAttribute("pageBar", pageBar);
+		request.setAttribute("totalContents", totalContents);
+		
+		request.getRequestDispatcher("/WEB-INF/views/board/lookingRoom.jsp").forward(request, response);
 	}
 
 	/**

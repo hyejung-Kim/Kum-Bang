@@ -40,11 +40,10 @@ public class BoardDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int board_num = Integer.parseInt(request.getParameter("board_num"));
-		
 		try {
 			
 			//1. 사용자 입력값 처리
+			int board_num = Integer.parseInt(request.getParameter("board_num"));
 			String br_cp_id = request.getParameter("br");
 			
 			//2. 업무로직 
@@ -96,21 +95,14 @@ public class BoardDetailServlet extends HttpServlet {
 			
 			List<RoomImage> imgList = new BoardService().selectRoomImgList(board_num);
 			
-			HttpSession session = request.getSession();
-			Member memberLoggedIn 
-			= (Member)session.getAttribute("memberLoggedIn");
-			
-			BoardLike resultBl = new BoardService().selectLikeOne(board_num, memberLoggedIn.getMemberId());
-			boolean like = resultBl == null ? false : true;
-			
 			//3. view단 처리
-			request.setAttribute("like", like);
 			request.setAttribute("roomBoard", roomBoard);
 			request.setAttribute("room", room);
 			request.setAttribute("broker", broker);
 			request.setAttribute("imgList", imgList);
 			
-			request.getRequestDispatcher("/WEB-INF/views/board/boardForm.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/board/boardForm.jsp")
+			.forward(request, response);
 		} catch(Exception e) {
 			
 			e.printStackTrace(); //디버깅용
@@ -118,35 +110,15 @@ public class BoardDetailServlet extends HttpServlet {
 			throw e; //was 웹 컨테이너에게 오류 던지기*** => 우리 프로젝트는 서버에 배포 후 서버를 실행하는것 우리는 오류 발생시 던지기만 하면됨
 		}
 		
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memberId = request.getParameter("memberId");
-		String br_cp_id = request.getParameter("br_cp_id");
-		int board_num = Integer.parseInt(request.getParameter("board_num"));
-
-		BoardLike bl = new BoardService().selectLikeOne(board_num, memberId);
-		boolean exitistLike = bl == null ? false : true;
-		if(exitistLike) {
-			//like 삭제
-			int result = new BoardService().deleteLike(bl);
-			System.out.println("insertLike="+result);
-		}else {
-			//like 추가
-			BoardLike like = new BoardLike(memberId, board_num, "T");
-			int result = new BoardService().insertLike(like);
-			System.out.println("insertLike="+result);
-		}
-		
-		BoardLike resultBl = new BoardService().selectLikeOne(board_num, memberId);
-		boolean like = resultBl == null ? false : true;
-		//4. 사용자 응답처리 : msg.jsp
-		//request.setAttribute("like", like);
-		//request.getRequestDispatcher("/WEB-INF/views/board/boardView?board_num="+board_num+"&br="+br_cp_id).forward(request, response);
-		
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }
