@@ -63,7 +63,6 @@ public class AdminBrokerEnrollServlet extends HttpServlet {
 	            //Broker객체로 만들기
 	            Broker newBroker = new Broker(br_cp_id, email, "1ARVn2Auq2/WAqx2gNrL+q3RNjAzXpUfCXrzkA6d4Xa22yhRLy4AC50E+6UTPoscbo31nbOoq51gvkuXzJ6B2w==", br_cp_name, br_name, phone, joindate_, insurance, 0, null, 0, null, null);
 	            
-	            
 	            //3. 업무로직: db에 insert (DML -> int =>1,0)
 	            int result = new BrokerService().insertBroker(newBroker);
 	            
@@ -76,7 +75,6 @@ public class AdminBrokerEnrollServlet extends HttpServlet {
 	            
 	            request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 
-		
 	}
 
 }

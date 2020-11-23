@@ -17,6 +17,7 @@ div#search-container {
 }
 </style>
 <script>
+
 $(function(){
 	
 	$("#searchType").change(function(){
@@ -51,13 +52,12 @@ $(function(){
 			</form>	
 		</div>
 	
-	
-	<table id="tbl-member">
+	<!-- 	<table id="tbl-member">
 		<thead>
 			<tr>
 				<th>아이디</th>
 				<th>이메일</th>
-				<th>회원관리</th>
+				<th>회원유형</th>
 				<th>전화번호</th>
 				<th>가입날짜</th>
 				<th>신고</th>
@@ -67,11 +67,15 @@ $(function(){
 		
 			
 		<% 
+		if(list == null || list.isEmpty()){%>
+			<div></div>
+	  <%}
+		else {
 			for(Member m : list){
 		%>
 			<%--조회된 회원이 있는 경우 --%>	
 				<tr>
-					<td><%= m.getMemberId() %></td>
+					<td><%=m.getMemberId() %></td>
 					<td><%=m.getEmail() != null ? m.getEmail() : "" %></td>
 					<td><%=m.getMemberRole() %></td>
 					<td><%=m.getPhone() %></td>
@@ -79,14 +83,17 @@ $(function(){
 					<td><%=m.getOutCount()  %></td>
 				</tr>
 		<% 		
-		   } 
+		   }
+		}	
 		%>
 		</tbody>
-	</table>
-</div>
+	</table> 
+	</div>
 	<div id="pageBar">
 		<%= request.getAttribute("pageBar") %>
-	</div>
-	
+	</div>-->
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </section>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

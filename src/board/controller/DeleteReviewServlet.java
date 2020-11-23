@@ -1,4 +1,4 @@
-package community.controller;
+package board.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,19 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import community.model.service.CommunityService;
+import board.model.service.BoardService;
+import board.model.vo.RoomReview;
+import board.model.vo.RoomBoard;
 
 /**
- * Servlet implementation class CommunityQnADeleteServlet
+ * Servlet implementation class DeleteReviewServlet
  */
-@WebServlet("/community/comboarddelete")
-public class CommunityQnADeleteServlet extends HttpServlet {
+@WebServlet("/board/reviewdelete")
+public class DeleteReviewServlet extends HttpServlet
+{
 	private static final long serialVersionUID = 1L;
-       
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommunityQnADeleteServlet() {
+    public DeleteReviewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,23 +38,22 @@ public class CommunityQnADeleteServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		int boardno = Integer.parseInt(request.getParameter("boardNo"));
-		int result = new CommunityService().deleteBoard(boardno);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		int boardno = Integer.parseInt(request.getParameter("boardno"));
+		String br_cp_id = request.getParameter("br_cp_id");
 		
-		String msg = result > 0 ? "글 삭제 성공!" : "글 삭제 실패!";
-		String loc = "/community/communityQnA";
+		int reviewId = Integer.parseInt(request.getParameter("reviewno"));
+		RoomReview rr = new RoomReview();
+		int result = new BoardService().deleteReview(reviewId);
+		
+		String msg = result > 0 ? "리뷰 삭제 성공!" : "리뷰 삭제 실패!";
+		String loc ="/board/boardView?board_num=" + boardno + "&br=" + br_cp_id;
 		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+		
+		
 	}
-//	String msg = result > 0 ? "게시글 수정 성공!" : "게시글 수정 실패!";
-//	String loc = "/board/boardView?boardNo=" + boardNo;
-//	request.setAttribute("msg", msg);
-//	request.setAttribute("loc", loc);
-//	request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
-//		   .forward(request, response);
 }

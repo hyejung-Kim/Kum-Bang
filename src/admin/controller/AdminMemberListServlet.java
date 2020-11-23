@@ -58,8 +58,7 @@ public class AdminMemberListServlet extends HttpServlet {
 		request.setAttribute("list", list);
 		request.setAttribute("pageBar", pageBar);
 		
-		request.getRequestDispatcher("/WEB-INF/views/admin/memberList.jsp")
-			   .forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/admin/memberList.jsp").forward(request, response);
 		
 				
 			

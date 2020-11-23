@@ -12,6 +12,9 @@ import board.model.vo.BoardLike;
 import board.model.vo.Room;
 import board.model.vo.RoomBoard;
 import board.model.vo.RoomImage;
+import board.model.vo.RoomReview;
+import community.model.dao.CommunityDAO;
+import community.model.vo.ComBoardReply;
 import member.model.dao.MemberDAO;
 import member.model.vo.Member;
 
@@ -66,7 +69,63 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
-
+	
+	public int insertReview(RoomReview newReview)
+	{
+		Connection conn = getConnection();
+		int result = new BoardDAO().insertReview(conn, newReview);
+		//트랜잭션 처리
+		if(result>0) {
+			int reviewNo = new BoardDAO().selectLastRoomImgSeq(conn);
+			//controller에서도 board객체의 참조주소를 통해 접근할 수 있다.
+			//newReview.setReviewId(reviewNo);
+			commit(conn);
+		}
+		else 
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+	
+	public int deleteReview(int reviewno) {
+		Connection conn = getConnection();
+		int result = new BoardDAO().deleteReview(conn,reviewno);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+	
+	public List<RoomReview> selectReviewList(String location) {
+		Connection conn = getConnection();
+		List<RoomReview> list = boardDAO.selectReviewList(conn,location);
+		close(conn);
+		return list;
+	}
+	
+	public RoomReview selectOneReview(int reviewId) {
+		Connection conn = getConnection();
+		int result = 0;
+		RoomReview rr = boardDAO.selectOneReview(conn, reviewId);
+		
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		return rr;
+	}
+	
+	public int updateReview(RoomReview newReview) {
+		Connection conn = getConnection();
+		int result = boardDAO.updateReview(conn, newReview);
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+	
 	public List<RoomBoard> selectBoardList(int cPage, int numPerPage) {
 		Connection conn = getConnection();
 		List<RoomBoard> list= boardDAO.selectBoardList(conn, cPage, numPerPage);

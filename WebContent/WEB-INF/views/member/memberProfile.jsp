@@ -195,7 +195,7 @@ conversation.setAttributes({
 	</div>
 	<div class="sub1">
 		<a class="click1">모두보기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-		<a class="click2">나의 질문목록</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a class="click2">나의 글목록</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<a class="click3">좋아요</a>
 	</div>
 	<div class="sub2">
@@ -254,9 +254,9 @@ conversation.setAttributes({
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<div class="allview-content" >
 	<div>
-		<p class="myallview-question">나의 질문목록</p>
+		<p class="myallview-question">나의 글목록</p>
 		<div class="myquestionState-div">
-		<p class="myStatequestion"><%=memberLoggedIn.getMemberId() %>님은  <%= qnaCnt %>회 질문하셨습니다.</p>
+		<p class="myStatequestion"><%=memberLoggedIn.getMemberId() %>님은  <%= qnaCnt %>회 글을 등록하셨습니다.</p>
 		</div>
 	</div>
 	<div>
@@ -327,8 +327,7 @@ conversation.setAttributes({
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<div class="brokerSales">
 			<p class="memberIdparagraph"><span class="countPercentMemberId"><%= memberLoggedIn.getMemberId() %></span>님은</p>
-			<p>누적 <span class="countPercentMemberId"><%= qnaCnt %>회</span>의 질문을 등록하셨습니다!</p>		
-			<p>상위 <span class="countPercent">3%</span>의 질문왕입니다.</p>		
+			<p>누적 <span class="countPercentMemberId"><%= qnaCnt %>회</span>의 글을 등록하셨습니다!</p>			
 		</div>
 	</div>
 	</div>

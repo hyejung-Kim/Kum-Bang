@@ -153,7 +153,7 @@ public final class communityView_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("<html>\r\n");
       out.write("<head>\r\n");
       out.write("<meta charset=\"UTF-8\">\r\n");
-      out.write("<title>DamoaBang</title>\r\n");
+      out.write("<title>KumBang</title>\r\n");
       out.write("<link rel=\"stylesheet\"\r\n");
       out.write("\thref=\"");
       out.print(request.getContextPath() );
@@ -316,7 +316,7 @@ public final class communityView_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("\t\t<div class=\"container\">\r\n");
       out.write("\t\t\t<a href=\"");
       out.print(request.getContextPath() );
-      out.write("\" class=\"navbar-brand\">다모아방</a>\r\n");
+      out.write("\" class=\"navbar-brand\">금방</a>\r\n");
       out.write("\t\t\t<div class=\"navbar-collapse\" id=\"navbarResponsive\">\r\n");
       out.write("\t\t\t\t<ul class=\"navbar-nav\">\r\n");
       out.write("\t\t\t\t\t");

@@ -47,10 +47,10 @@ $(document).ready(function(){
     });
 }); 
 function deleteMember(){
-	if(!confirm("이 회원을 블랙리스트로 이동")) return;
+	if(!confirm("이 회원을 블랙리스트로 이동 시키겠습니까?")) return;
 	
 	$.ajax({
-		url: "<%= request.getContextPath() %>/admin/brokerBalcklistUpdate",
+		url: "<%= request.getContextPath() %>/admin/brokerBlacklistUpdate",
 		method: "POST", 
 		dataType: "text", //html, text, json, xml 리턴된 데이터에 따라 자동설정됨
 		data:  {"br_cp_id": tdArray[0]}, //사용자 입력값전달
@@ -110,9 +110,11 @@ function deleteMember(){
 		</thead>
 		<tbody>
 		
-		
-			
 		<% 
+		if(list == null || list.isEmpty()){%>
+			<div></div>
+	  <%}
+		else {
 			for(Broker b : list){
 		%>
 			<%--조회된 회원이 있는 경우 --%>	
@@ -129,7 +131,8 @@ function deleteMember(){
 					<td><%=b.getOutcount()  %></td>
 				</tr>
 		<% 		
-		   } 
+		   }
+		}	
 		%>
 		<tr class="br_enrollInput">
 			<th>
@@ -139,10 +142,10 @@ function deleteMember(){
 				<input type="email" class="input-field2" placeholder="abc@xyz.com" name="email" id="br_email"><br>
 			</td>
 			<td>	
-				<input type="text" class="input-field2" placeholder="우리중개사" name="br_cp_name" id="br_cp_name" required><br>
+				<input type="text" class="input-field2" placeholder="달비부동산" name="br_cp_name" id="br_cp_name" required><br>
 			</td>
 			<td>	
-				<input type="text" class="input-field2" placeholder="권정열" name="br_name" id="br_name" required><br>
+				<input type="text" class="input-field2" placeholder="김달비" name="br_name" id="br_name" required><br>
 			</td>
 			<td>	
 				<input type="tel" class="input-field2" placeholder="(-없이)01012345678" name="phone" id="br_phone" maxlength="11" required><br>

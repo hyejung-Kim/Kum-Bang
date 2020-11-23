@@ -17,6 +17,7 @@ import board.model.vo.BoardLike;
 import board.model.vo.Room;
 import board.model.vo.RoomBoard;
 import board.model.vo.RoomImage;
+import board.model.vo.RoomReview;
 import broker.model.service.BrokerService;
 import broker.model.vo.Broker;
 import member.model.vo.Member;
@@ -40,7 +41,9 @@ public class BoardDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
+		//int roomId = Integer.parseInt(request.getParameter("roomno"));
 		
 		try {
 			
@@ -93,7 +96,6 @@ public class BoardDetailServlet extends HttpServlet {
 			//System.out.println("room@servlet = " + room);
 			
 			//이미지 조회
-			
 			List<RoomImage> imgList = new BoardService().selectRoomImgList(board_num);
 			
 			HttpSession session = request.getSession();
@@ -103,12 +105,16 @@ public class BoardDetailServlet extends HttpServlet {
 			BoardLike resultBl = new BoardService().selectLikeOne(board_num, memberLoggedIn.getMemberId());
 			boolean like = resultBl == null ? false : true;
 			
+			//리뷰 조회
+			List<RoomReview> reviewList = new BoardService().selectReviewList(room.getLocation());
+					
 			//3. view단 처리
 			request.setAttribute("like", like);
 			request.setAttribute("roomBoard", roomBoard);
 			request.setAttribute("room", room);
 			request.setAttribute("broker", broker);
 			request.setAttribute("imgList", imgList);
+			request.setAttribute("reviewList", reviewList);
 			
 			request.getRequestDispatcher("/WEB-INF/views/board/boardForm.jsp").forward(request, response);
 		} catch(Exception e) {

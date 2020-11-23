@@ -210,9 +210,15 @@ $(document).ready(function(){
 			<input type="button" class="HeaderCloseBtn" id="closeBtn" value="x" onclick="closeBtn();">
 
 			<form action="<%=request.getContextPath()%>/member/login" id="login" method="post" class="input-group">
+			
+			<!--  인스타 페북 등등.....................			
 				<div class="social-icons">
 					<img src="<%=request.getContextPath()%>/images/naver.png" alt="naver"> <img src="<%=request.getContextPath()%>/images/facebook.png" alt="facebook"> <img src="<%=request.getContextPath()%>/images/google.png" alt="google">
 				</div>
+				
+			-->
+
+				
 				<input type="text" id="loginId" name="memberId" class="input-field" placeholder="아이디를 입력해주세요" required value="<%=saveIdChecked ? saveIdValue : ""%>" /> <input type="password" id="loginPwd" name="password" class="input-field" placeholder="비밀번호를 입력해주세요" required>
 				<div id="chkWrap">
 					<input type="checkbox" class="checkbox" name="saveId" <%=saveIdChecked ? "checked" : ""%> />아이디 저장 <span class="checkbox brokerChk" id="br_frm" onclick="location.href='<%=request.getContextPath()%>/broker/index'">중개인이세요?</span>
@@ -222,7 +228,10 @@ $(document).ready(function(){
 			<form id="register" action="<%=request.getContextPath()%>/member/enroll" method="post" onsubmit="return resisterVal();" class="input-group">
 				<input type="text" id="userId" name="memberId" class="input-field" placeholder="User ID" required>
 				<div id="id_check"></div>
-				<input type="email" id="userEmail" name="email" class="input-field" placeholder=abc@xyz.com required> <input type="password" id="userPwd" name="password" class="input-field" placeholder="Enter Password" required> <input type="password" id="userPwdChk" class="input-field" placeholder="Enter Password Check" required> <input type="tel" id="userPhone" name="phone" class="input-field" placeholder="(-없이)01012345678" maxlength="11" required>
+				<input type="email" id="userEmail" name="email" class="input-field" placeholder=abc@xyz.com required>
+				<input type="password" id="userPwd" name="password" class="input-field" placeholder="Enter Password" required>
+				<input type="password" id="userPwdChk" class="input-field" placeholder="Enter Password Check" required>
+				<input type="tel" id="userPhone" name="phone" class="input-field" placeholder="(-없이)01012345678" maxlength="11" required>
 				<button class="submit">회원가입</button>
 				<a href="<%=request.getContextPath()%>/broker/enroll">중개인 회원가입</a>
 			</form>

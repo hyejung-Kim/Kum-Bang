@@ -14,6 +14,7 @@ import javax.servlet.jsp.*;
 import board.model.vo.RoomImage;
 import board.model.vo.RoomBoard;
 import board.model.vo.Room;
+import board.model.vo.RoomReview;
 import java.util.List;
 import member.model.vo.Member;
 import broker.model.vo.Broker;
@@ -47,6 +48,7 @@ public final class updateBoard_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_imports_classes.add("member.model.vo.Member");
     _jspx_imports_classes.add("board.model.vo.RoomBoard");
     _jspx_imports_classes.add("board.model.vo.Room");
+    _jspx_imports_classes.add("board.model.vo.RoomReview");
     _jspx_imports_classes.add("broker.model.vo.Broker");
   }
 
@@ -142,7 +144,7 @@ public final class updateBoard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html>\r\n");
       out.write("<head>\r\n");
       out.write("<meta charset=\"UTF-8\">\r\n");
-      out.write("<title>DamoaBang</title>\r\n");
+      out.write("<title>KumBang</title>\r\n");
       out.write("<link rel=\"stylesheet\" href=\"");
       out.print(request.getContextPath() );
       out.write("/css/style.css\" />\r\n");
@@ -263,7 +265,7 @@ public final class updateBoard_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t<div class=\"container\">\r\n");
       out.write("\t\t\t\t<a href=\"");
       out.print(request.getContextPath() );
-      out.write("\" class=\"navbar-brand\">다모아방</a>\r\n");
+      out.write("\" class=\"navbar-brand\">금방</a>\r\n");
       out.write("\t\t\t\t<div class=\"navbar-collapse\" id=\"navbarResponsive\">\r\n");
       out.write("\t\t\t\t\t<ul class=\"navbar-nav\">\r\n");
       out.write("\t\t\t\t\t\t");

@@ -91,6 +91,7 @@ function deleteBoard() {
 			</div>
 		</form>
 	</div>
+
 	<table id="tbl-comment">
 		<% 
 			if(commentList != null && !commentList.isEmpty()){ 
@@ -107,6 +108,7 @@ function deleteBoard() {
 				</sub>
 				<br /> 
 			</td>
+			
 			<td class="replyContentAndDelete">
 				<sub class="ReplyMainContent">
 				<%= cbr.getContent() %>

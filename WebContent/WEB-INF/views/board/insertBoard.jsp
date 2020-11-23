@@ -8,7 +8,7 @@
         <form action="<%= request.getContextPath() %>/board/enroll" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="br_cp_id" value="<%=memberLoggedIn.getMemberId() %>" />
 		    <section>
-		        <input type="text" name="board_title" id="boardTitle" placeholder="제목을 적어주세요"  >
+		        <input type="text" name="board_title" id="boardTitle" placeholder="제목을 입력하시오. (건물명 포함 필수)"  >
 			</section>
 			<section id="roomUpSection">
 	            <select name="room_val" class="selectOption" >
