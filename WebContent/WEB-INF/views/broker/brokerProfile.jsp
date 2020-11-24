@@ -254,6 +254,7 @@ $("#file").on('change',function(){
 		<div class="brokerForSales">
 			<p class="memberIdparagraph"><span class="countPercentMemberId"><%=brokerLoggedIn.getBr_name() %></span>님은</p>
 			<p>누적 <span class="countPercentMemberId"><%=broker.getSellcount() %>회</span>의 거래를 성사시켰습니다!</p> 		
+			<p>상위 <span class="countPercent" >7%</span>의 베스트 중개인입니다.</p>
 		</div>		
 	</div>
 	</div>

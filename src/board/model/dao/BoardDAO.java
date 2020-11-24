@@ -1,5 +1,6 @@
 ﻿package board.model.dao;
 
+
 import static common.JDBCTemplate.*;
 
 import java.io.FileNotFoundException;
@@ -24,6 +25,7 @@ import board.model.vo.RoomImage;
 import board.model.vo.RoomReview;
 import community.model.vo.ComBoardReply;
 import member.model.vo.Member;
+
 
 public class BoardDAO {
 
@@ -539,8 +541,6 @@ public class BoardDAO {
 			rset = pstmt.executeQuery();
 			
 			list = new ArrayList<>();
-			
-			
 			while(rset.next()) {
 				int imgNum = rset.getInt("img_num");
 				int boardNum = rset.getInt("board_num");
@@ -548,7 +548,7 @@ public class BoardDAO {
 				String rName = rset.getString("renamename");
 				
 				RoomImage ri = new RoomImage(imgNum, boardNum, oName, rName);
-				System.out.println(ri.toString());
+				
 				list.add(ri);
 			}
 		} catch (SQLException e) {
@@ -872,6 +872,7 @@ public class BoardDAO {
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
+			close(rset);
 			close(pstmt);
 		}
 		
@@ -892,7 +893,7 @@ public class BoardDAO {
 			
 			if(rset.next()) {
 				rl = new BoardLike();
-				rl.setMemberId(rset.getString("memberId"));
+				rl.setMemberId(rset.getString("member_id"));
 				rl.setBoard_num(rset.getInt("board_num"));
 				rl.setLike(rset.getString("like"));
 			}

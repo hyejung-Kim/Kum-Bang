@@ -52,14 +52,14 @@ public class SearchRoomServlet extends HttpServlet {
 		
 		//2. 업무로직 : 게시글 목록 조회
 		//a. contents 영역
-		List<RoomBoard> list = boardService.searchBoardList(room_val, tax_val, price, fee, cPage, numPerPage); 
+		List<RoomBoard> list = boardService.searchBoardList(room_val, tax_val, startPrice, endPrice, fee, cPage, numPerPage); 
 		
 		//b. pageBar 영역
 		int totalContents = boardService.selectTotalContents(room_val, tax_val, price, fee);
 		String url = request.getRequestURI()
 					+ "?room_val=" + room_val 
 					+ "&tax_val=" + tax_val 
-					+ "&price=" + price 
+					+ "&price=" + endprice 
 					+ "&fee=" + fee 
 					+ "&";
 		String pageBar = Utils.getPageBarHtml(cPage, numPerPage, totalContents, url);

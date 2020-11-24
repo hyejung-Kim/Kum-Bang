@@ -117,13 +117,15 @@ public class MemberDAO {
 			
 			result = pstmt.executeUpdate();
 			
+			System.out.println(updateMember.getEmail());
+			System.out.println("result@dao="+pstmt);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
 		
-//		System.out.println("result@dao="+result);
 		return result;
 	}
 
@@ -400,6 +402,28 @@ public class MemberDAO {
 			close(pstmt);
 		}
 		
+		return result;
+	}
+
+	public int updateMemberCertificate(Connection conn, Member m) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateMemberCertificate");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getCertificate());
+			pstmt.setString(2, m.getMemberId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+//		System.out.println("result@dao="+result);
 		return result;
 	}
 

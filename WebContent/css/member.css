@@ -1,7 +1,8 @@
 ﻿@CHARSET "UTF-8";
 /********* 회원정보 수정 페이지 **********/
 .edit-info1,
-.edit-info2 {
+.edit-info2,
+.edit-info3{
     display: none;
     border-radius: 15px;
     clear: both;
@@ -9,11 +10,12 @@
     margin: 50px auto;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
     width: 800px;
-    height: 500px;
+    height: 600px;
 }
 
 .edit-info1 table input,
-.edit-info2 table input {
+.edit-info2 table input,
+.edit-info3 table input{
     width: 100%;
     padding: 10px 0;
     margin: 10px 20px;
@@ -43,12 +45,14 @@
 }
 
 .edit-infoPage,
-.edit-passwordPage {
+.edit-passwordPage,
+.edit-certificatePage {
     padding: 30px 250px;
 }
 
 .edit-infoPage p,
-.edit-passwordPage p {
+.edit-passwordPage p,
+.edit-certificatePage p {
     text-align: center;
     font-size: 25px;
     font-weight: 800;
@@ -416,6 +420,12 @@ div#talkjs-container{
 	top: 23%;
 	cursor: pointer;
 }
+.click6 {
+	position: relative;
+	top: 23%;
+	cursor: pointer;
+}
+
 
 
 /********* 회원정보 수정 페이지 **********/

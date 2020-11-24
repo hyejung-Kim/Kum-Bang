@@ -4,11 +4,11 @@
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/board.css" />
 
 	<div class="roomUpdatePage">
-        <h1 >방 등록하기</h1>
+        <h1 >매매 올리기</h1>
         <form action="<%= request.getContextPath() %>/brokerBoard/enroll" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="br_cp_id" value="<%=brokerLoggedIn.getBr_cp_id() %>" />
 		    <section>
-		        <input type="text" name="board_title" id="boardTitle" placeholder="제목을 적어주세요 (건물명 포함 필수)"  >
+		        <input type="text" name="board_title" id="boardTitle" placeholder="제목을 적어주세요"  >
 			</section>
 			<section id="roomUpSection">
 	            <select name="room_val" multiple="multiple" class="selectOption" >
