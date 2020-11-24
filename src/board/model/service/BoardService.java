@@ -184,17 +184,16 @@ public class BoardService {
 		return list;
 	}
 
-	public int selectTotalContents(String room_val, String tax_val, int price, int fee) {
+	public int selectTotalContents(String room_val, String tax_val, int startPrice, int endPrice, int fee, int startSize, int endSize) {
 		Connection conn = getConnection();
-		int totalContents = boardDAO.selectTotalContents(conn, room_val, tax_val, price, fee);
+		int totalContents = boardDAO.selectTotalContents(conn, room_val, tax_val, startPrice, endPrice, fee, startSize, endSize);
 		close(conn);
 		return totalContents;
 	}
 
-	public List<RoomBoard> searchBoardList(String room_val, String tax_val, int price, int fee, int cPage,
-			int numPerPage) {
+	public List<RoomBoard> searchBoardList(String room_val, String tax_val, int startPrice, int endPrice, int fee, int startSize, int endSize, int cPage, int numPerPage) {
 		Connection conn = getConnection();
-		List<RoomBoard> list = boardDAO.searchBoardList(conn, room_val, tax_val, price, fee, cPage, numPerPage);
+		List<RoomBoard> list = boardDAO.searchBoardList(conn, room_val, tax_val, startPrice, endPrice, fee, startSize, endSize, cPage, numPerPage);
 		close(conn);
 		return list;
 	}

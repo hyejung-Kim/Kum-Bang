@@ -514,7 +514,7 @@ if (memberLoggedIn.getMemberRole().equals("U")) {
       out.write("\r\n");
       out.write("<section id=\"search-banner\">\r\n");
       out.write("\t<p class=\"banner-text\">\r\n");
-      out.write("\t\t<span style=\"font-weight: bold;\">진실의 방</span> 을\r\n");
+      out.write("\t\t<span style=\"font-weight: bold;\">금방</span> 을\r\n");
       out.write("\t</p>\r\n");
       out.write("\t<p class=\"banner-text\">구하고 계신가요?</p>\r\n");
       out.write("\t<form action=\"");
