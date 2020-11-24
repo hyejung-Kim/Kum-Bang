@@ -110,7 +110,7 @@ public class BoardSendMailServlet extends HttpServlet {
 			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(m.getEmail()));
 			
 			//메일 제목
-			msg.setSubject("다모아방 허위매물신고 인증 메일입니다");
+			msg.setSubject("금방 허위매물신고 인증 메일입니다");
 			
 			//메일 내용
 			msg.setText("인증 번호는 [" +temp+ "]입니다.");

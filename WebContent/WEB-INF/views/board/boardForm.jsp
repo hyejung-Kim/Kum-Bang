@@ -2,6 +2,8 @@
 <%@page import="board.model.vo.RoomBoard"%>
 <%@page import="board.model.vo.Room"%>
 <%@page import="board.model.vo.RoomImage"%>
+<%@page import="board.model.vo.RoomReview"%>
+<%@page import="member.model.service.MemberService"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -9,9 +11,13 @@
 <%
 	Room room = (Room)request.getAttribute("room");
 	RoomBoard roomBoard = (RoomBoard)request.getAttribute("roomBoard");
+	RoomReview roomReview = (RoomReview)request.getAttribute("roomReview");
 	Broker br = (Broker)request.getAttribute("broker");
 	List<RoomImage> imgList = (List<RoomImage>)request.getAttribute("imgList");
+	List<RoomReview> reviewList = (List<RoomReview>)request.getAttribute("reviewList");
+	boolean like = (boolean)request.getAttribute("like");
 %>
+
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/board.css" />
 
 
@@ -67,9 +73,14 @@
 	<form name="likeFrm" action="<%= request.getContextPath()%>/board/boardView" method="POST">
 		<input type="hidden" id="likeMemId" name="memberId" value="<%= memberLoggedIn.getMemberId() %>" />
 		<input type="hidden" id="likeBrId" name="br_cp_id" value="<%= roomBoard.getBr_cp_id() %>" />
-		<input type="hidden" id=likeBoardNum name="board_num" value="<%= room.getBoard_num() %>" />
+		<input type="hidden" id="likeBoardNum" name="board_num" value="<%= room.getBoard_num() %>" />
+		<input type="hidden" id="alsjdhakjsdbaskjbd"  name="roomLocation" value="<%= room.getLocation()%>" />
 	</form>
 
+	<div id="roomDetail-LikeAlarm">
+		<img src=<%= like ? "../images/colorHeart.png" : "../images/heart.png" %> id="likeBtn" alt="" />좋아요 
+		<img src="<%=request.getContextPath()%>/images/alert.png" onclick="roomReportBtn();" alt="" />허위매물 신고
+	</div>
 	
 	  <!-- 본인 인증 팝업 -->   
 	    <div id="certificationWrap"></div> 
@@ -158,7 +169,7 @@
    		</ul>
    	</div>
 	<div class="roomDetail-info4">
-		<div id="roomImg-number"><p>매물번호 : <%= room.getRoom_num() %></p></div>
+		<div id="roomImg-number"><p name="roomnum">매물번호 : <%= room.getRoom_num() %></p></div>
    <%
    	if(imgList != null){ 
    		for(RoomImage ri : imgList){ %>
@@ -183,8 +194,205 @@
 		<input type="text" id="roomLocation" value="<%=room.getLocation() %>" readonly/>
 		<div id="roomMap" style="width:800px;height:500px;"></div>
 	</div>
+	
+	<div class="roomReview">
+		<p class="review-title">후기</p>
+		<form name="reviewform" class="reviewform" method="post" action="<%= request.getContextPath() %>/board/insertreview">
+	        <input type="hidden" name="rate" id="rate" value="0"/>
+	        <input type="hidden" id="revBrId" name="boardno" value="<%= roomBoard.getBoard_num() %>" />
+			<input type="hidden" id="revBrcpId" name="br_cp_id" value="<%= roomBoard.getBr_cp_id() %>" />
+	        <input type="hidden" id="revMemId" name="memberId" value="<%= memberLoggedIn.getMemberId() %>" />
+			<input type="hidden" id="revRoomNum" name="roomnum" value="<%= room.getRoom_num() %>" />
+			
+	        <p class="title_star">별점과 리뷰를 남겨주세요.</p>
+	 
+	        <div class="review_rating">
+	            <div class="warning_msg">별점을 선택해 주세요.</div>
+	            <div class="rating">
+	                <!-- 해당 별점을 클릭하면 해당 별과 그 왼쪽의 모든 별의 체크박스에 checked 적용 -->
+	                <input type="checkbox" name="rating" id="rating1" value="1" class="rate_radio" title="1점">
+	                <label for="rating1"></label>
+	                <input type="checkbox" name="rating" id="rating2" value="2" class="rate_radio" title="2점">
+	                <label for="rating2"></label>
+	                <input type="checkbox" name="rating" id="rating3" value="3" class="rate_radio" title="3점" >
+	                <label for="rating3"></label>
+	                <input type="checkbox" name="rating" id="rating4" value="4" class="rate_radio" title="4점">
+	                <label for="rating4"></label>
+	                <input type="checkbox" name="rating" id="rating5" value="5" class="rate_radio" title="5점">
+	                <label for="rating5"></label>
+	            </div>
+	        </div>
+	        <div class="review_contents">
+	            <div class="warning_msg">두 글자 이상 작성해 주세요.</div>
+	            <textarea rows="10" name="reviewcontent" placeholder="두 글자 이상 작성해 주세요." class="review_textarea"></textarea>
+	        </div>   
+	        <div class="cmd">
+	            <input type="button"  name="save" id="save" value="등록"> <!-- onclick="reviewBtn()" -->
+	        </div>
+   		 </form>
+	</div>
+	
+	<!--  리뷰 조회&삭제 -------------------------------------------------------------------------- -->
+	<table id="tbl-review">
+		<% 
+			if(reviewList != null && !reviewList.isEmpty())
+			{ 
+				for (RoomReview rr : reviewList)
+				{
+		%>				
+				<tr class="review">
+					<td class="reviewMemProfileIdDate">
+						<sub class="coveredMemberProfileWriterDate">
+						<sub class="review-memberProfile"> <img class="reviewMemberProfileImg" src="<%=request.getContextPath()%>/images/user.png"></sub>
+						<sub class="review-writer" name="userId"> <%= rr.getUserId() %></sub> 
+						<sub class="review-date" name="reviewenrolldate"> <%= rr.getEnrolldate() %></sub>
+						</sub>
+						<br /> 
+					</td>
+					
+					<td class="reviewContentAndDelete">
+						<sub class="review-rating">
+							<script>
+								function showRating()
+								{
+									<%switch(rr.getRating())
+									{
+										case 1: %>document.write("★☆☆☆☆"); <%break;
+										case 2: %>document.write("★★☆☆☆"); <%break;
+										case 3: %>document.write("★★★☆☆"); <%break;
+										case 4: %>document.write("★★★★☆"); <%break;
+										case 5: %>document.write("★★★★★"); <%break;
+									}%>
+								}
+								showRating();
+							</script>
+						</sub>
+						<sub class="ReviewMainContent">
+						<div id="myDiv" style="display:inline"><%= rr.getReviewContent() %></div>
+						<textarea id="myTextarea" cols=50 rows=1 style="visibility:hidden"></textarea>
+									<%if(memberLoggedIn != null && (rr.getUserId().equals(memberLoggedIn.getMemberId()) || memberLoggedIn.getMemberRole().equals(MemberService.MEMBER_ROLE_ADMIN)))
+									{ %>
+																		
+									<form class="reviewupdate" action = "<%= request.getContextPath()%>/board/reviewupdate" method = "POST" name="reviewupdate">
+									<button class="Reviewbtn-update" value="<%= rr.getReviewId() %>" onclick = "reviewupdate();" class="update">수정</button>
+									<input type="hidden" name="reviewno" value=<%=rr.getReviewId() %> />
+									<input type="hidden" id="revBrId" name="boardno" value="<%= roomBoard.getBoard_num() %>" />
+									<input type="hidden" id="revBrcpId" name="br_cp_id" value="<%= roomBoard.getBr_cp_id() %>" />
+								    <input type="hidden" id="revMemId" name="memberId" value="<%= memberLoggedIn.getMemberId() %>" />
+									<input type="hidden" id="revRoomNum" name="roomno" value="<%= room.getRoom_num() %>" />
+									<input type="hidden" id="revRating" name="rating" value="<%= rr.getRating() %>" />
+									</form>
+									 
+									<form class="reviewdelete" action = "<%= request.getContextPath()%>/board/reviewdelete" method = "POST" name="reviewdelete"> 
+									<button class="Reviewbtn-delete" value="<%= roomBoard.getBoard_num() %>" onclick = "reviewdelete();" class="delete">삭제</button>
+									<input type="hidden" name="reviewno" value=<%=rr.getReviewId() %> />
+									<input type="hidden" id="revBrId" name="boardno" value="<%= roomBoard.getBoard_num() %>" />
+									<input type="hidden" id="revBrcpId" name="br_cp_id" value="<%= roomBoard.getBr_cp_id() %>" />
+								    <input type="hidden" id="revMemId" name="memberId" value="<%= memberLoggedIn.getMemberId() %>" />
+									<input type="hidden" id="revRoomNum" name="roomno" value="<%= room.getRoom_num() %>" />
+									</form>
+									<% } %>
+						</sub>
+					</td>
+					
+				</tr>
+		<% 
+				}
+			} 
+		%>
+	</table>
+	
+	<!--  리뷰 조회&삭제 끝 -------------------------------------------------------------------------- -->
+	
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f812560fa3200866e643713203eb962f&libraries=services"></script>	
 <script>
+
+function reviewupdate() {
+    function cmUpdateOpen(comment_num){
+        window.name = "parentForm";
+        window.open("CommentUpdateFormAction.co?num="+reviewno,
+                    "updateForm", "width=570, height=350, resizable = no, scrollbars = no");
+    }
+}
+
+function reviewdelete() {
+	reviewdelete.submit();
+}
+
+//별점 마킹 모듈 프로토타입으로 생성
+function Rating(){};
+Rating.prototype.rate = 0;
+Rating.prototype.setRate = function(newrate){
+    //별점 마킹 - 클릭한 별 이하 모든 별 체크 처리
+    this.rate = newrate;
+    let items = document.querySelectorAll('.rate_radio');
+    items.forEach(function(item, idx){
+        if(idx < newrate){
+            item.checked = true;
+        }else{
+            item.checked = false;
+        }
+    });
+}
+let rating = new Rating();//별점 인스턴스 생성 
+
+document.addEventListener('DOMContentLoaded', function(){
+    //별점선택 이벤트 리스너
+    document.querySelector('.rating').addEventListener('click',function(e){
+        let elem = e.target;
+        if(elem.classList.contains('rate_radio')){
+            rating.setRate(parseInt(elem.value));
+        }
+    })
+});
+
+//리뷰 작성 글자수 초과 체크 이벤트 리스너
+document.querySelector('.review_textarea').addEventListener('keydown',function(){
+    //리뷰 500자 초과 안되게 자동 자름
+    let review = document.querySelector('.review_textarea');
+    let lengthCheckEx = /^.{500,}$/;
+    if(lengthCheckEx.test(review.value)){
+        //500자 초과 컷
+        review.value = review.value.substr(0,500);
+    }
+});
+
+//저장 전송전 필드 체크 이벤트 리스너
+document.querySelector('#save').addEventListener('click', function(e){
+    //별점 선택 안했으면 메시지 표시
+    if(rating.rate == 0){
+        rating.showMessage('rate');
+        return false;
+    }
+    //리뷰 2자 미만이면 메시지 표시
+    if(document.querySelector('.review_textarea').value.length < 2){
+        rating.showMessage('review');
+        return false;
+    }
+    //폼 서밋
+    reviewform.submit();
+});
+
+Rating.prototype.showMessage = function(type){//경고메시지 표시
+switch(type){
+    case 'rate':
+        //안내메시지 표시
+        document.querySelector('.review_rating .warning_msg').style.display = 'block';
+        //지정된 시간 후 안내 메시지 감춤
+        setTimeout(function(){
+            document.querySelector('.review_rating .warning_msg').style.display = 'none';
+        },1000);            
+        break;
+    case 'review':
+        //안내메시지 표시
+        document.querySelector('.review_contents .warning_msg').style.display = 'block';
+        //지정된 시간 후 안내 메시지 감춤
+        setTimeout(function(){
+            document.querySelector('.review_contents .warning_msg').style.display = 'none';
+        },1000);    
+        break;
+}
+}
 //메일발송
 $(document).ready(function(){
     $(".sendMail").click(function(){

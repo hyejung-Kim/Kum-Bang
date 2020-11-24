@@ -24,6 +24,56 @@ $(function(){
 	
 });
 
+function clear(){
+    $("table *").removeAttr("style");
+}
+$(document).ready(function(){
+    $("tbody tr").not(".member_enrollInput").mouseenter(function(){
+        clear();
+        $(this).css("background", "#ff934c9e");
+
+    });
+});
+let tdArray = "";
+$(document).ready(function(){
+    $("tbody tr").not(".member_enrollInput").click(function(){
+        clear();
+        $(this).css("background", "#ff934c9e");
+
+        let tr = $(this); 
+        let td = tr.children();
+       
+        tdArray = new Array(); // 배열에 값 담기
+        td.each(function(i){
+            tdArray.push(td.eq(i).text());
+        });
+        
+        //alert(tdArray[0]);
+        setTimeout(deleteMember, 300);
+    });
+}); 
+
+function deleteMember(){
+	if(!confirm("이 회원을 탈퇴 시키겠습니까?")) return;
+	
+	$.ajax({
+		url: "<%= request.getContextPath() %>/admin/memberDelete",
+		method: "POST", 
+		dataType: "text", //html, text, json, xml 리턴된 데이터에 따라 자동설정됨
+		data:  {"member_id": tdArray[0]}, //사용자 입력값전달
+		success: function(data){
+			//요청성공시 호출되는 함수
+			console.log(data);
+			location.href="<%=request.getContextPath()%>/admin/memberFinder?searchType=memberRole&searchKeyword=U";
+		},
+		error: function(xhr, textStatus, errorThrown){
+			console.log("ajax 요청 실패!");
+			console.log(xhr, textStatus, errorThrown);
+		}
+	});
+	
+}
+
 </script>
 <section id="memberList-container">
 	<h2>회원관리</h2>
@@ -55,7 +105,7 @@ $(function(){
 			<tr>
 				<th>아이디</th>
 				<th>이메일</th>
-				<th>회원관리</th>
+				<th>회원유형</th>
 				<th>전화번호</th>
 				<th>가입날짜</th>
 				<th>신고</th>
@@ -78,7 +128,7 @@ $(function(){
 		<% 		
 		   } 
 		%>
-		<tr>
+		<tr class = "member_enrollInput">
 			<th>
 				<input type="text" class="input-field2"  name="memberId" id="memberId" placeholder="abcde" required>
 			</th>

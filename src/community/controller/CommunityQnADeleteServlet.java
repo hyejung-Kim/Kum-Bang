@@ -40,7 +40,7 @@ public class CommunityQnADeleteServlet extends HttpServlet {
 		int boardno = Integer.parseInt(request.getParameter("boardNo"));
 		int result = new CommunityService().deleteBoard(boardno);
 		
-		String msg = result > 0 ? "질문 삭제 성공" : "질문 삭제 실패";
+		String msg = result > 0 ? "글 삭제 성공!" : "글 삭제 실패!";
 		String loc = "/community/communityQnA";
 		
 		request.setAttribute("msg", msg);

@@ -267,6 +267,7 @@ conversation.setAttributes({
 					</table>
 				</form>
 			</section>
+
 		</div>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<div class="allview-content">
@@ -306,6 +307,7 @@ conversation.setAttributes({
 			</div>
 			<div class="allviewPageBar" id='pageBar'>
 				<%=pageBar%>
+
 			</div>
 		</div>
 	</div>

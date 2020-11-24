@@ -495,7 +495,153 @@ div#pageBar a {
 	font-size: 25px;
 	font-weight: 800;
 }
+/*///////////////////리뷰//////////////////*/
+.roomReview {
+	margin: 40px 0 20px 100px;
+	width: 1200px;
+}
 
+.roomReview p {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.roomReview .review-title {
+	font-size: 25px;
+	font-weight: 800;
+}
+
+.reviewform textarea{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.rating .rate_radio {
+    position: relative;
+    display: inline-block;
+    z-index: 20;
+    opacity: 0.001;
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    cursor: pointer;
+    vertical-align: top;
+    display: none;
+}
+
+.rating .rate_radio + label {
+    position: relative;
+    display: inline-block;
+    margin-left: -4px;
+    z-index: 10;
+    width: 60px;
+    height: 60px;
+    background-image: url('../images/starrate.png');
+    background-repeat: no-repeat;
+    background-size: 60px 60px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+
+.rating .rate_radio:checked + label {
+    background-color: #ffff00;
+}
+
+.warning_msg {
+    display: none;
+    position: relative;
+    text-align: center;
+    background: #ffffff;
+    line-height: 26px;
+    width: 100%;
+    color: red;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #e0e0e0;
+}
+
+#save {
+	color: white;
+	font-size: 15px;
+	border: none;
+	top: 0;
+	left: 0;
+	width: 100px;
+	height: 40px;
+	background: rgb(255, 138, 61);
+	border-radius: 50px;
+	cursor: pointer;
+}
+
+#tbl-review{
+	margin-top: 3em;
+	margin-left: 6em;
+	width: 100%;
+}
+.reviewMemProfileIdDate{
+	display: inline-block;
+}
+.coveredMemberProfileWriterDate{
+	display: inline-flex;
+}
+.review-writer{
+	margin-left: 5px;
+	margin-top: 0px;
+	font-size: 16px;
+	font-weight: 600;	
+}
+.review-date{
+	font-size: 11px;
+	font-weight: 600;
+	margin-left: 13px;
+	color: darkgray;
+	margin-top: 5px;
+}
+.review-rating{
+	color: rgb(255, 138, 61);
+	font-size: 17px;
+	margin-left: 2.5em;
+}
+
+.reviewContentAndDelete{
+	display: block;
+	margin-bottom: 1em;
+}
+
+.reviewupdate{
+	display:inline-block;
+	float: right;
+}
+
+.reviewdelete{
+	display:inline-block;
+	float: right;
+}
+
+.Reviewbtn-update{
+	border: none;
+	background-color: transparent;
+	color: rgb(255,138,61);
+	font-weight: 900;
+	margin-right: 5em;
+	cursor: pointer;
+}
+
+.Reviewbtn-delete{
+	border: none;
+	background-color: transparent;
+	color: rgb(255,138,61);
+	font-weight: 900;
+	margin-right: 5em;
+	cursor: pointer;
+}
+
+.ReviewMainContent{
+	margin-left: 1em;
+}
+
+/*//////////////////////리뷰끝/////////////////////*/
 #map {
 	margin: 0 auto;
 }

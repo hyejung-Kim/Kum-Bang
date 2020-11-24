@@ -50,8 +50,8 @@ public class RoomImage implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "RoomImage [img_num=" + img_num + ", board_num=" + board_num + ", originalName=" + originalName
-				+ ", renameName=" + renameName + "]";
+		return "RoomImage [img_num=" + this.img_num + ", board_num=" + this.board_num + ", originalName=" + this.originalName
+				+ ", renameName=" + this.renameName + "]";
 	}
 
 	

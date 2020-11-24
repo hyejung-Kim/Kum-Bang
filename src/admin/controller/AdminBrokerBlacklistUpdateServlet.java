@@ -18,7 +18,7 @@ import member.model.vo.Member;
 /**
  * Servlet implementation class MemberUpdateServlet
  */
-@WebServlet("/admin/brokerBalcklistUpdate")
+@WebServlet("/admin/brokerBlacklistUpdate")
 public class AdminBrokerBlacklistUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -39,7 +39,7 @@ public class AdminBrokerBlacklistUpdateServlet extends HttpServlet {
 		
 		//2.사용자입력값처리
 		String br_cp_id = request.getParameter("br_cp_id");
-		System.out.println("brokerBalck@servlet"+br_cp_id);
+		System.out.println("brokerBlack@servlet"+br_cp_id);
 		
 		
 		Broker updateBr = new Broker(br_cp_id, null, null, null, null, null, null, null, 0, null, 0, null, "T"); 
@@ -48,8 +48,6 @@ public class AdminBrokerBlacklistUpdateServlet extends HttpServlet {
 		//3.업무로직
 		int result = new BrokerService().updateBrBlacklist(updateBr);
 		System.out.println("result@servlet="+result);
-		
-	
 	}
 
 }

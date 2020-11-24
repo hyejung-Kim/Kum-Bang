@@ -159,7 +159,7 @@ public final class brokerList_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html>\r\n");
       out.write("<head>\r\n");
       out.write("<meta charset=\"UTF-8\">\r\n");
-      out.write("<title>DamoaBang</title>\r\n");
+      out.write("<title>KumBang</title>\r\n");
       out.write("<link rel=\"stylesheet\" href=\"");
       out.print(request.getContextPath());
       out.write("/css/style.css\" />\r\n");
@@ -278,7 +278,7 @@ public final class brokerList_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t<div class=\"container\">\r\n");
       out.write("\t\t\t<a href=\"");
       out.print(request.getContextPath());
-      out.write("\" class=\"navbar-brand\">다모아방</a>\r\n");
+      out.write("\" class=\"navbar-brand\">금방</a>\r\n");
       out.write("\t\t\t<div class=\"navbar-collapse\" id=\"navbarResponsive\">\r\n");
       out.write("\t\t\t\t<ul class=\"navbar-nav\">\r\n");
       out.write("\r\n");
@@ -565,7 +565,7 @@ if (memberLoggedIn.getMemberRole().equals("U")) {
       out.write("\t$.ajax({\r\n");
       out.write("\t\turl: \"");
       out.print( request.getContextPath() );
-      out.write("/admin/brokerBalcklistUpdate\",\r\n");
+      out.write("/admin/brokerBlacklistUpdate\",\r\n");
       out.write("\t\tmethod: \"POST\", \r\n");
       out.write("\t\tdataType: \"text\", //html, text, json, xml 리턴된 데이터에 따라 자동설정됨\r\n");
       out.write("\t\tdata:  {\"br_cp_id\": tdArray[0]}, //사용자 입력값전달\r\n");
@@ -689,10 +689,10 @@ if (memberLoggedIn.getMemberRole().equals("U")) {
       out.write("\t\t\t\t<input type=\"email\" class=\"input-field2\" placeholder=\"abc@xyz.com\" name=\"email\" id=\"br_email\"><br>\r\n");
       out.write("\t\t\t</td>\r\n");
       out.write("\t\t\t<td>\t\r\n");
-      out.write("\t\t\t\t<input type=\"text\" class=\"input-field2\" placeholder=\"우리중개사\" name=\"br_cp_name\" id=\"br_cp_name\" required><br>\r\n");
+      out.write("\t\t\t\t<input type=\"text\" class=\"input-field2\" placeholder=\"달비부동산\" name=\"br_cp_name\" id=\"br_cp_name\" required><br>\r\n");
       out.write("\t\t\t</td>\r\n");
       out.write("\t\t\t<td>\t\r\n");
-      out.write("\t\t\t\t<input type=\"text\" class=\"input-field2\" placeholder=\"권정열\" name=\"br_name\" id=\"br_name\" required><br>\r\n");
+      out.write("\t\t\t\t<input type=\"text\" class=\"input-field2\" placeholder=\"김달비\" name=\"br_name\" id=\"br_name\" required><br>\r\n");
       out.write("\t\t\t</td>\r\n");
       out.write("\t\t\t<td>\t\r\n");
       out.write("\t\t\t\t<input type=\"tel\" class=\"input-field2\" placeholder=\"(-없이)01012345678\" name=\"phone\" id=\"br_phone\" maxlength=\"11\" required><br>\r\n");

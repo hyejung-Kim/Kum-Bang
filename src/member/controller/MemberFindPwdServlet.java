@@ -95,7 +95,7 @@ public class MemberFindPwdServlet extends HttpServlet {
 						msg.addRecipient(Message.RecipientType.TO, new InternetAddress(m.getEmail()));
 						
 						//메일 제목
-						msg.setSubject("다모아방 비밀번호 안내 메일입니다");
+						msg.setSubject("금방 비밀번호 안내 메일입니다");
 						
 						//메일 내용
 						msg.setText("비밀번호를 [" +newPwd+ "]로 초기화 하였습니다.");

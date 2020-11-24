@@ -61,8 +61,11 @@ div#search-container {
 		<tbody>
 		
 		
-			
 		<% 
+		if(list == null || list.isEmpty()){%>
+			<div></div>
+	  <%}
+		else {
 			for(Broker b : list){
 		%>
 			<%--조회된 회원이 있는 경우 --%>	
@@ -79,6 +82,7 @@ div#search-container {
 					<td><%=b.getOutcount()  %></td>
 				</tr>
 		<% 		
+			}
 		   } 
 		%>
 		</tbody>

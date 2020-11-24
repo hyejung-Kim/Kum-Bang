@@ -1,5 +1,6 @@
 ﻿package board.model.dao;
 
+
 import static common.JDBCTemplate.*;
 
 import java.io.FileNotFoundException;
@@ -21,7 +22,10 @@ import board.model.vo.BoardLike;
 import board.model.vo.Room;
 import board.model.vo.RoomBoard;
 import board.model.vo.RoomImage;
+import board.model.vo.RoomReview;
+import community.model.vo.ComBoardReply;
 import member.model.vo.Member;
+
 
 public class BoardDAO {
 
@@ -97,6 +101,143 @@ public class BoardDAO {
 		}
 		return result;
 	}
+	
+	//리뷰 등록
+	public int insertReview(Connection conn, RoomReview newRoomReview) {
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertReview");
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, newRoomReview.getReviewContent());
+			pstmt.setInt(2, newRoomReview.getRating());
+			pstmt.setInt(3, newRoomReview.getRoomId());
+			pstmt.setString(4, newRoomReview.getUserId());
+			
+			System.out.println(pstmt);
+			result = pstmt.executeUpdate();
+			
+			System.out.println(pstmt);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	//리뷰 삭제
+	public int deleteReview(Connection conn, int reviewno) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, reviewno);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateReview(Connection conn, RoomReview newReview) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateReview");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, newReview.getReviewContent());
+			pstmt.setInt(2, newReview.getRating());
+			pstmt.setInt(3, newReview.getReviewId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		System.out.println("result@dao = " + result);
+		
+		return result;
+	}
+	
+	// 리뷰 한 개 선택
+	public RoomReview selectOneReview(Connection conn, int reviewno) {
+		RoomReview rr = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectOneReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, reviewno);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				rr = new RoomReview();
+				rr.setReviewContent(rset.getString("reviewcontent"));
+				rr.setRating(rset.getInt("rating"));
+				rr.setRoomId(rset.getInt("roomno"));
+				rr.setUserId(rset.getString("userId"));
+				rr.setEnrolldate(rset.getDate("reviewenrolldate"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		//System.out.println("board@dao = " + r);
+		
+		return rr;
+	}
+	
+	// 리뷰 전체 조회
+	public List<RoomReview> selectReviewList(Connection conn , String location) {
+		List<RoomReview> list = new ArrayList<>();
+		RoomReview rr = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReviewList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, location);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				rr = new RoomReview();
+				rr.setReviewId(rset.getInt("reviewId"));
+				rr.setReviewContent(rset.getString("reviewContent"));
+				rr.setRating(rset.getInt("rating"));
+				rr.setRoomId(rset.getInt("roomId"));
+				rr.setUserId(rset.getString("userId"));
+				rr.setEnrolldate(rset.getDate("enrolldate"));
+				System.out.println(rr.toString());
+				
+				list.add(rr);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
 
 	public int selectLastRoomSeq(Connection conn) {
 		int roomNo = 0;

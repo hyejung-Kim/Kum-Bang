@@ -104,7 +104,6 @@
 <script>
 //방올리기
 $(document).ready(function(){
-    
     $(".roomUpdateBtn").click(function(){
     	location.href='<%=request.getContextPath()%>/brokerBoard/insertBoard'
     });
