@@ -32,25 +32,41 @@ $(document).ready(function(){
 	<section id="option-tab" style="display: inline;">
 		<form action="<%=request.getContextPath()%>/brokerBoard/searchRoom"
 			style="display: inline">
-			<select name="room_val" class="selectOption">
-				<option value="OO">오픈형 원룸</option>
-				<option value="SO">분리형 원룸</option>
-				<option value="OT">오픈형 투룸</option>
-				<option value="ST">분리형 투룸</option>
-			</select> <select name="tax_val" class="selectOption">
-				<option value="M">월세</option>
-				<option value="Y">전세</option>
-			</select> <select name="price" class="selectOption">
-				<option value="45">월 ~ 45</option>
-				<option value="100">45 ~ 100</option>
-			</select> <select name="fee" class="selectOption">
-				<option value="5">관리비 ~5만</option>
-				<option value="10">5~10만</option>
-				<option value="20">10~20만</option>
-			</select> <select name="option" class="selectOption">
-				<option value="oneRoom">추가옵션</option>
-				<option value="twoRoom">세탁기</option>
-				<option value="threeRoom">냉장고</option>
+				<select name="room_val" class="selectOption" >
+	                <option value="OO">오픈형 원룸</option> 
+	                <option value="SO">분리형 원룸</option>
+	               	<option value="OMT">오픈형 미니투룸</option> 
+	                <option value="SMT">분리형 미니투룸</option> 
+	                <option value="OT">오픈형 투룸 이상</option>
+	                <option value="ST">분리형 투룸 이상</option>
+	            </select>
+	            
+	            <select name="tax_val" class="selectOption" >
+	                <option value="M" >월세</option>
+	                <option value="Y" >전세</option>
+	            </select>
+	            
+	            <span>
+					가격 : <input type="text" name="startPrice" id="startPrice" > ~ <input type="text" name="endPrice" id="endPrice" >
+	            </span>
+	
+	            <select name="fee" class="selectOption" >
+	                <option value="5" >관리비 ~5만</option>
+	                <option value="10" >5~10만 </option>
+	                <option value="20" >10~20만</option>
+	            </select>
+	            
+	            <span>
+					평수 : <input type="text" name="startSize" id="startSize" > ~ <input type="text" name="endSize" id="endSize" >
+	            </span>
+	            
+	            <span>
+	            	입주가능일 : <input type="date" name="movedate" id="movedate" >
+	            </span>
+	            
+	            <span>
+	            	층 : <input type="text" name="startFloor" id="startFloor" > ~ <input type="text" name="endFloor" id="endFloor" >
+	            </span> <input type="submit" class="room-searchBtn" value="검색">
 			</select> <input type="submit" class="room-searchBtn" value="검색">
 		</form>
 	</section>

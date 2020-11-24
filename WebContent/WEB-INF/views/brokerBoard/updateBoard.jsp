@@ -20,39 +20,38 @@
 		    <section>
 		        <input type="text" name="board_title" id="boardTitle" placeholder="제목을 적어주세요" value="<%= rb.getBoard_title()  %>" >
 			</section>
-			<section id="roomUpSection">
-	            <select name="room_val" class="selectOption"  >
-	                <option value="OO" <%= r.getRoom_val().equals("OO") ? "selected" : "" %> >오픈형 원룸</option> 
-	                <option value="SO" <%= r.getRoom_val().equals("SO") ? "selected" : "" %>>분리형 원룸</option>
-	                <option value="OT" <%= r.getRoom_val().equals("OT") ? "selected" : "" %>>오픈형 투룸</option>
-	                <option value="ST" <%= r.getRoom_val().equals("ST") ? "selected" : "" %>>분리형 투룸</option>
+				<select name="room_val" multiple="multiple" class="selectOption" >
+	                <option value="OO">오픈형 원룸</option> 
+	                <option value="SO">분리형 원룸</option>
+	               	<option value="OMT">오픈형 미니투룸</option> 
+	                <option value="SMT">분리형 미니투룸</option> 
+	                <option value="OT">오픈형 투룸 이상</option>
+	                <option value="ST">분리형 투룸 이상</option>
 	            </select>
 	
-	            <select name="tax_val" class="selectOption" >
-	                <option value="M" <%= r.getTax_val().equals("M") ? "selected" : "" %> >월세</option>
-	                <option value="Y" <%= r.getTax_val().equals("Y") ? "selected" : "" %>>전세</option>
+	            <select name="tax_val" multiple="multiple" class="selectOption" >
+	                <option value="M" >월세</option>
+	                <option value="Y" >전세</option>
 	            </select>
 	
-	            <select name="price" class="selectOption" >
-	                <option value=45 <%=  r.getPrice()==45? "selected" : "" %>>월 ~ 45</option>
-	                <option value=100 <%=  r.getPrice()==100? "selected" : "" %>>45 ~ 100</option>
-	            </select>
-	
-	            <select name="fee" class="selectOption" >
-	                <option value=5 <%=  r.getFee()==5? "selected" : "" %>>관리비 ~5만</option>
-	                <option value=10 <%=  r.getFee()==10? "selected" : "" %>>5~10만 </option>
-	                <option value=20 <%=  r.getFee()==20? "selected" : "" %>>10~20만</option>
-	            </select>
-	            <select name="size" class="selectOption" >
-	                <option value=14 <%=  r.getSize()==14? "selected" : "" %>>14평</option>
-	                <option value=24 <%=  r.getSize()==24? "selected" : "" %>>24평</option>
-	                <option value=34 <%=  r.getSize()==34? "selected" : "" %>>34평</option>
-	            </select>
 	            <span>
-	            	입주가능일 : <input type="date" name="movedate" id="movedate" value="<%= r.getMovedate() %>">
+					가격 : <input type="text" name="price" id="price" >
 	            </span>
+	
 	            <span>
-	            	층 : <input type="text" name="floor" id="floor" value="<%= r.getFloor() %>">
+					관리비 : <input type="text" name="fee" id="fee" >
+	            </span>
+	            
+	            <span>
+					평수 : <input type="text" name="size" id="size" >
+	            </span>
+	            
+	            <span>
+	            	입주가능일 : <input type="date" name="movedate" id="movedate" >
+	            </span>
+	            
+	            <span>
+	            	층 : <input type="text" name="floor" id="floor" >
 	            </span>
 			</section>
 			

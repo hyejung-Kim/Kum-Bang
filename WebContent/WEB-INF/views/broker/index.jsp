@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/views/common/brokerHeader.jsp" %>	
 		<section id="search-banner">
 			<p class="banner-text">
-				<span style="font-weight: bold;">금방</span>
+				<span style="font-weight: bold;">대학생을 위한 방</span>
 				을
 			</p>
 			<p class="banner-text">구하고 계신가요?</p>

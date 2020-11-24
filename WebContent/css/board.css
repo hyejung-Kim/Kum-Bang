@@ -203,6 +203,79 @@ div#pageBar a {
 #floor {
   width: 35px;
 }
+
+#price {
+	  margin: 30px 15px 0 0;
+  border: 1px solid #ddd;
+  height: 25px;
+  border-radius: 5px;
+  width: 70px;
+}
+
+#startPrice {
+	  margin: 30px 15px 0 0;
+  border: 1px solid #ddd;
+  height: 25px;
+  border-radius: 5px;
+  width: 35px;
+}
+
+#endPrice {
+	  margin: 30px 15px 0 0;
+  border: 1px solid #ddd;
+  height: 25px;
+  border-radius: 5px;
+  width: 35px;
+}
+
+#fee {
+	  margin: 30px 15px 0 0;
+  border: 1px solid #ddd;
+  height: 25px;
+  border-radius: 5px;
+  width: 70px;
+}
+
+#size {
+	  margin: 30px 15px 0 0;
+  border: 1px solid #ddd;
+  height: 25px;
+  border-radius: 5px;
+  width: 35px;
+}
+
+#startSize {
+	  margin: 30px 15px 0 0;
+  border: 1px solid #ddd;
+  height: 25px;
+  border-radius: 5px;
+  width: 35px;
+}
+
+#endSize {
+	  margin: 30px 15px 0 0;
+  border: 1px solid #ddd;
+  height: 25px;
+  border-radius: 5px;
+  width: 35px;
+}
+
+#startFloor {
+	  margin: 30px 15px 0 0;
+  border: 1px solid #ddd;
+  height: 25px;
+  border-radius: 5px;
+  width: 35px;
+}
+
+#endFloor {
+	  margin: 30px 15px 0 0;
+  border: 1px solid #ddd;
+  height: 25px;
+  border-radius: 5px;
+  width: 35px;
+}
+
 #roomUploadFile {
   clear: both;
 }
