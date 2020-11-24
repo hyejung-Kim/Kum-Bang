@@ -36,8 +36,11 @@ public class SearchRoomServlet extends HttpServlet {
 		//1. 사용자 입력값
 		String room_val = request.getParameter("room_val");
 		String tax_val = request.getParameter("tax_val");
-		int price = Integer.parseInt(request.getParameter("price"));
+		int startPrice = Integer.parseInt(request.getParameter("startPrice"));
+		int endPrice = Integer.parseInt(request.getParameter("endPrice"));
 		int fee = Integer.parseInt(request.getParameter("fee"));
+		int startSize = Integer.parseInt(request.getParameter("startSize"));
+		int endSize = Integer.parseInt(request.getParameter("endSize"));
 		
 		int numPerPage = 3;
 		int cPage = 1;
