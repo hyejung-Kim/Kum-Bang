@@ -196,8 +196,8 @@ public class BrokerDAO {
 			
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, (cPage - 1) * numPerPage + 1);
-			pstmt.setInt(2, cPage * numPerPage);
+			//pstmt.setInt(1, (cPage - 1) * numPerPage + 1);
+			//pstmt.setInt(2, cPage * numPerPage);
 			
 			rset = pstmt.executeQuery();
 			list = new ArrayList<>();
@@ -238,8 +238,8 @@ public class BrokerDAO {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, (cPage - 1) * numPerPage + 1);
-			pstmt.setInt(2, cPage * numPerPage);
+			//pstmt.setInt(1, (cPage - 1) * numPerPage + 1);
+			//pstmt.setInt(2, cPage * numPerPage);
 			
 			rset = pstmt.executeQuery();
 			list = new ArrayList<>();
@@ -275,7 +275,7 @@ public class BrokerDAO {
 	public int updateBrBlack(Connection conn, Broker updateBr) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("updateBrBalck");
+		String sql = prop.getProperty("updateBrBlack");
 		//update broker set black = ? where br_cp_id = ?
 		
 		try {

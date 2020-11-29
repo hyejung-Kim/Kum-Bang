@@ -17,7 +17,6 @@ div#search-container {
 }
 </style>
 <script>
-
 $(function(){
 	
 	$("#searchType").change(function(){
@@ -28,6 +27,55 @@ $(function(){
 	
 });
 
+function clear(){
+    $("table *").removeAttr("style");
+}
+$(document).ready(function(){
+    $("tbody tr").not(".member_enrollInput").mouseenter(function(){
+        clear();
+        $(this).css("background", "#ff934c9e");
+
+    });
+});
+let tdArray = "";
+$(document).ready(function(){
+    $("tbody tr").not(".member_enrollInput").click(function(){
+        clear();
+        $(this).css("background", "#ff934c9e");
+
+        let tr = $(this); 
+        let td = tr.children();
+       
+        tdArray = new Array(); // 배열에 값 담기
+        td.each(function(i){
+            tdArray.push(td.eq(i).text());
+        });
+        
+        //alert(tdArray[0]);
+        setTimeout(updateAuthority, 300);
+    });
+}); 
+
+function updateAuthority(){
+	if(!confirm("이 회원을 집주인판매자로 지정하시겠습니까?")) return;
+	
+	$.ajax({
+		url: "<%= request.getContextPath() %>/admin/updateAuthority",
+		method: "POST", 
+		dataType: "text", //html, text, json, xml 리턴된 데이터에 따라 자동설정됨
+		data:  {"member_id": tdArray[0]}, //사용자 입력값전달
+		success: function(data){
+			//요청성공시 호출되는 함수
+			console.log(data);
+			location.href="<%=request.getContextPath()%>/admin/memberFinder";
+		},
+		error: function(xhr, textStatus, errorThrown){
+			console.log("ajax 요청 실패!");
+			console.log(xhr, textStatus, errorThrown);
+		}
+	});
+	
+}
 </script>
 <section id="memberList-container">
 	<h2>회원관리</h2>
@@ -41,7 +89,11 @@ $(function(){
 				<button type="submit">일반회원 조회</button>			
 			</form>	
 		</div>
-
+		<div>
+			<form action="<%=request.getContextPath()%>/admin/memberAuthority">
+				<button type="submit">회원 권한 관리</button>			
+			</form>	
+		</div>
 		<div id="search-broker">
 			<form action="<%=request.getContextPath()%>/admin/brokerList">
 				<button type="submit"> 중개인회원 조회</button>			
@@ -76,7 +128,7 @@ $(function(){
 		%>
 			<%--조회된 회원이 있는 경우 --%>	
 				<tr>
-					<td><%=m.getMemberId() %></td>
+					<td name="memberId"><%=m.getMemberId() %></td>
 					<td><%=m.getEmail() != null ? m.getEmail() : "" %></td>
 					<td><%=m.getMemberRole() %></td>
 					<td><%=m.getPhone() %></td>

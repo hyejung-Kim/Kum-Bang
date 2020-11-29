@@ -23,7 +23,7 @@ try {
  query.append("insert into tb_user(email, activation_key, is_activation) \n");
  query.append("values(?, ?, 'N') \n"); //최초 등록시 활성화 플래그를 'N'으로 저장
  //
- Class.forName("oracle.jdbc.driver.OracleDriver");
+ Class.forName("com.mysql.cj.jdbc.Driver");
  conn = DriverManager.getConnection(db_url, db_user, db_passwd);
  pstmt = conn.prepareStatement(query.toString());
  int idx = 1;
@@ -33,8 +33,8 @@ try {
  //
  //활성 URL 메일 발송하기
  String mail_title = "사용자 활성화 메일";
- String host = "192.168.1.200";
- String sender = "no-reply@sabisung.com";
+ String host = "localhost";
+ String sender = "dalbikim@naver.com";
  String sender_name = "관리자";
  //
  Session sess = null;
@@ -46,12 +46,12 @@ try {
  sess = Session.getDefaultInstance(props, null);
  //
  msg = new MimeMessage(sess);
- msg.setFrom(new InternetAddress(sender, sender_name, "EUC-KR"));
+ msg.setFrom(new InternetAddress(sender, sender_name, "UTF-8"));
  InternetAddress[] address = {new InternetAddress(email)};
  msg.setRecipients(Message.RecipientType.TO, address);
  msg.setSubject(mail_title);
- String mail_body = "<a href='http://192.168.100.100:8080/sabisung/user_activation.jsp?email=" + email + "&key=" + uuid + "' target='_blank'>활성화</a>";
-  msg.setContent(mail_body, "text/html;charset=euc-kr");
+ String mail_body = "<a href='http://localhost:8080/common/user_activation.jsp?email=" + email + "&key=" + uuid + "' target='_blank'>활성화</a>";
+  msg.setContent(mail_body, "text/html;charset=UTF-8");
   msg.setHeader("Content-Transfer-Encoding", "base64");
   msg.setSentDate(new java.util.Date());
   Transport.send(msg);
@@ -67,7 +67,7 @@ try {
 %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>

@@ -16,41 +16,33 @@
      <div class="lookinRoomView">
      	<section id="option-tab">
      		<form action="<%= request.getContextPath() %>/board/searchRoom" >
-				<select name="room_val" class="selectOption" >
+	            <select name="room_val" class="selectOption" >
 	                <option value="OO">오픈형 원룸</option> 
 	                <option value="SO">분리형 원룸</option>
-	               	<option value="OMT">오픈형 미니투룸</option> 
-	                <option value="SMT">분리형 미니투룸</option> 
-	                <option value="OT">오픈형 투룸 이상</option>
-	                <option value="ST">분리형 투룸 이상</option>
+	                <option value="OT">오픈형 투룸</option>
+	                <option value="ST">분리형 투룸</option>
 	            </select>
-	            
+	
 	            <select name="tax_val" class="selectOption" >
 	                <option value="M" >월세</option>
 	                <option value="Y" >전세</option>
 	            </select>
-	            
-	            <span>
-					가격 : <input type="text" name="startPrice" id="startPrice" > ~ <input type="text" name="endPrice" id="endPrice" >
-	            </span>
+	
+	            <select name="price" class="selectOption" >
+	                <option value="45" >월 ~ 45</option>
+	                <option value="100" >45 ~ 100</option>
+	            </select>
 	
 	            <select name="fee" class="selectOption" >
 	                <option value="5" >관리비 ~5만</option>
 	                <option value="10" >5~10만 </option>
 	                <option value="20" >10~20만</option>
 	            </select>
-	            
-	            <span>
-					평수 : <input type="text" name="startSize" id="startSize" > ~ <input type="text" name="endSize" id="endSize" >
-	            </span>
-	            
-	            <span>
-	            	입주가능일 : <input type="date" name="movedate" id="movedate" >
-	            </span>
-	            
-	            <span>
-	            	층 : <input type="text" name="startFloor" id="startFloor" > ~ <input type="text" name="endFloor" id="endFloor" >
-	            </span>
+	            <select name="option" class="selectOption" >
+	                <option value="oneRoom" >추가옵션</option>
+	                <option value="twoRoom" >세탁기</option>
+	                <option value="threeRoom" >냉장고</option>
+	            </select>
      			<input type="submit" class="room-searchBtn" value="검색">
      		</form>
      	</section>
@@ -65,7 +57,7 @@
 	
 	
 		<div id="roomViewCon1">
-            <h2>전체 게시글 : <%= cnt %>개</h2>
+            
 	 <% 
 	 if(list == null || list.isEmpty()){ %>           
       <%--    	조회된 행이 없는 경우
@@ -155,7 +147,7 @@
 $(document).ready(function(){
     
     $(".roomUpdateBtn").click(function(){
-    	location.href='<%=request.getContextPath()%>/board/insertBoard'
+    	alert("방을 올리시려면 중개인에게 연락해주세요!");
     });
 });
 function alret(){

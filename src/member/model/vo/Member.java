@@ -169,18 +169,12 @@ public class Member implements Serializable, HttpSessionBindingListener{
 		this.certificate = certificate;
 	}
 
-
-
-	
-
 	@Override
 	public String toString() {
 		return "Member [memberId=" + memberId + ", email=" + email + ", password=" + password + ", memberRole="
 				+ memberRole + ", phone=" + phone + ", enrollDate=" + enrollDate + ", outCount=" + outCount
 				+ ", profile=" + profile + ", certificate=" + certificate + "] , black=" + black + "]";
 	}
-
-
 
 	@Override
 	public void valueBound(HttpSessionBindingEvent e) {

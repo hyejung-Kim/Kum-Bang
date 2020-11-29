@@ -11,6 +11,7 @@ public class MemberService {
 	
 	public static final String MEMBER_ROLE_USER = "U";
 	public static final String MEMBER_ROLE_ADMIN = "A";
+	public static final String MEMBER_ROLE_Owner = "O";
 	
 	private MemberDAO memberDAO = new MemberDAO();
 
@@ -133,7 +134,15 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
-
 	
+	public int updateAuthority(Member m)
+	{
+		Connection conn = getConnection();
+		int result = memberDAO.updateMemberCertificate(conn, m);
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
 
 }

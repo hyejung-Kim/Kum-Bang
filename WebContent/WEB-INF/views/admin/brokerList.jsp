@@ -79,11 +79,14 @@ function deleteMember(){
 				<button type="submit">일반회원 조회</button>			
 			</form>	
 		</div>
+
+		
 		<div id="search-broker">
 			<form action="<%=request.getContextPath()%>/admin/brokerList">
 				<button type="submit"> 중개인회원 조회</button>			
 			</form>	
 		</div>
+
 		<div id="search-brokerBlacklist">
 			<form action="<%=request.getContextPath()%>/admin/brokerBlacklist">
 				<button type="submit"> 중개인 블랙리스트</button>			

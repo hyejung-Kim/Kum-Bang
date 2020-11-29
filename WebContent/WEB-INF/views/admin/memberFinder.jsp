@@ -87,6 +87,7 @@ function deleteMember(){
 				<button type="submit">일반회원 조회</button>			
 			</form>	
 		</div>
+
 		<div id="search-broker">
 			<form action="<%=request.getContextPath()%>/admin/brokerList">
 				<button type="submit"> 중개인회원 조회</button>			
@@ -118,7 +119,7 @@ function deleteMember(){
 		%>
 			<%--조회된 회원이 있는 경우 --%>	
 				<tr>
-					<td><%= m.getMemberId() %></td>
+					<td name="memberId"><%= m.getMemberId() %></td>
 					<td><%=m.getEmail() != null ? m.getEmail() : "" %></td>
 					<td><%=m.getMemberRole() %></td>
 					<td><%=m.getPhone() %></td>

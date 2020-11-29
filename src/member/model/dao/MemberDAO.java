@@ -180,8 +180,8 @@ public class MemberDAO {
 			//cPage=2, numPerPage=10 : 11,20
 			//cPage=3, numPerPage=10 : 21,30
 			//....
-			pstmt.setInt(1, (cPage - 1) * numPerPage + 1);
-			pstmt.setInt(2, cPage * numPerPage);
+			//pstmt.setInt(1, (cPage - 1) * numPerPage + 1);
+			//pstmt.setInt(2, cPage * numPerPage);
 			
 			rset = pstmt.executeQuery();
 			list = new ArrayList<>();
@@ -413,6 +413,28 @@ public class MemberDAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, m.getCertificate());
+			pstmt.setString(2, m.getMemberId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+//		System.out.println("result@dao="+result);
+		return result;
+	}
+	
+	public int updateAuthority(Connection conn, Member m) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateAuthority");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getMemberRole());
 			pstmt.setString(2, m.getMemberId());
 			
 			result = pstmt.executeUpdate();

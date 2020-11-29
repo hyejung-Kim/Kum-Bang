@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="member.model.vo.Member"%>
 <%@ page import="broker.model.vo.Broker"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
+
 	//session : 선언없이 사용할 수 있는 jsp내장객체
 	Member memberLoggedIn = (Member) session.getAttribute("memberLoggedIn");
 	Broker brokerLoggedIn = (Broker) session.getAttribute("brokerLoggedIn");
@@ -25,7 +27,7 @@
 
 	}
 %>
-<!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
