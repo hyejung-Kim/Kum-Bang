@@ -1,13 +1,15 @@
 ﻿@CHARSET "UTF-8";
 /*************방찾기 메인 페이지***************/
-.lookinRoomView{
+.lookinRoomView {
 	text-align: center;
-	border-bottom: 1px solid rgb(235,235,235);
+	border-bottom: 1px solid rgb(235, 235, 235);
 	padding-bottom: 1em;
 }
-.RoomInsert{
+
+.RoomInsert {
 	display: inline;
 }
+
 select.selectOption {
 	height: 1.5em;
 	border: none;
@@ -15,6 +17,7 @@ select.selectOption {
 	font-size: 18px;
 	margin: 15px 15px 0 10px;
 }
+
 select.roomselectOption {
 	height: 1.5em;
 	border: none;
@@ -59,12 +62,12 @@ select.roomselectOption {
 	width: 40%;
 	float: left;
 }
-#roomViewCon1,
-#rooomViewCon1_1 {
-  margin: 50px 10px 50px 100px;
-  border-right: 1px #ddd solid;
-  width: 40%;
-  float: left;
+
+#roomViewCon1, #rooomViewCon1_1 {
+	margin: 50px 10px 50px 100px;
+	border-right: 1px #ddd solid;
+	width: 40%;
+	float: left;
 }
 
 #roomViewCon2 {
@@ -103,7 +106,7 @@ select.roomselectOption {
 	height: 30px;
 	border-radius: 10px;
 	cursor: pointer;
-	background-color: rgb(255,138,61);
+	background-color: rgb(255, 138, 61);
 	color: white;
 }
 
@@ -116,21 +119,20 @@ select.roomselectOption {
 	display: inline;
 }
 
-
 /*페이지바*/
 div#pageBar {
-  margin: 10px 150px 20px 0;
-  text-align: center;
+	margin: 10px 150px 20px 0;
+	text-align: center;
 }
+
 div#pageBar span.cPage {
-  color: #0066ff;
-  margin-right: 5px;
+	color: #0066ff;
+	margin-right: 5px;
 }
+
 div#pageBar a {
-  margin-right: 5px;
+	margin-right: 5px;
 }
-
-
 
 /********* 방 등록 페이지 **********/
 #roomUploadFile input {
@@ -171,9 +173,9 @@ div#pageBar a {
 }
 
 #roomUpSection select {
-  float: left;
-  margin: 30px 20px 20px 0;
-  font-size: 16px;
+	float: left;
+	margin: 30px 20px 20px 0;
+	font-size: 16px;
 }
 
 #boardBtn1 {
@@ -191,118 +193,125 @@ div#pageBar a {
 }
 
 #roomUpSection span {
-  float: left;
+	float: left;
 }
-#movedate,
-#floor {
-  margin: 30px 15px 0 0;
-  border: 1px solid #ddd;
-  height: 25px;
-  border-radius: 5px;
+
+#movedate, #floor {
+	margin: 30px 15px 0 0;
+	border: 1px solid #ddd;
+	height: 25px;
+	border-radius: 5px;
 }
+
 #floor {
-  width: 35px;
+	width: 35px;
 }
 
 #price {
-	  margin: 30px 15px 0 0;
-  border: 1px solid #ddd;
-  height: 25px;
-  border-radius: 5px;
-  width: 70px;
+	margin: 30px 15px 0 0;
+	border: 1px solid #ddd;
+	height: 25px;
+	border-radius: 5px;
+	width: 70px;
 }
 
 #startPrice {
-	  margin: 30px 15px 0 0;
-  border: 1px solid #ddd;
-  height: 25px;
-  border-radius: 5px;
-  width: 35px;
+	margin: 30px 15px 0 0;
+	border: 1px solid #ddd;
+	height: 25px;
+	border-radius: 5px;
+	width: 35px;
 }
 
 #endPrice {
-	  margin: 30px 15px 0 0;
-  border: 1px solid #ddd;
-  height: 25px;
-  border-radius: 5px;
-  width: 35px;
+	margin: 30px 15px 0 0;
+	border: 1px solid #ddd;
+	height: 25px;
+	border-radius: 5px;
+	width: 35px;
 }
 
 #fee {
-	  margin: 30px 15px 0 0;
-  border: 1px solid #ddd;
-  height: 25px;
-  border-radius: 5px;
-  width: 70px;
+	margin: 30px 15px 0 0;
+	border: 1px solid #ddd;
+	height: 25px;
+	border-radius: 5px;
+	width: 70px;
 }
 
 #size {
-	  margin: 30px 15px 0 0;
-  border: 1px solid #ddd;
-  height: 25px;
-  border-radius: 5px;
-  width: 35px;
+	margin: 30px 15px 0 0;
+	border: 1px solid #ddd;
+	height: 25px;
+	border-radius: 5px;
+	width: 35px;
 }
 
 #startSize {
-	  margin: 30px 15px 0 0;
-  border: 1px solid #ddd;
-  height: 25px;
-  border-radius: 5px;
-  width: 35px;
+	margin: 30px 15px 0 0;
+	border: 1px solid #ddd;
+	height: 25px;
+	border-radius: 5px;
+	width: 35px;
 }
 
 #endSize {
-	  margin: 30px 15px 0 0;
-  border: 1px solid #ddd;
-  height: 25px;
-  border-radius: 5px;
-  width: 35px;
+	margin: 30px 15px 0 0;
+	border: 1px solid #ddd;
+	height: 25px;
+	border-radius: 5px;
+	width: 35px;
 }
 
 #startFloor {
-	  margin: 30px 15px 0 0;
-  border: 1px solid #ddd;
-  height: 25px;
-  border-radius: 5px;
-  width: 35px;
+	margin: 30px 15px 0 0;
+	border: 1px solid #ddd;
+	height: 25px;
+	border-radius: 5px;
+	width: 35px;
 }
 
 #endFloor {
-	  margin: 30px 15px 0 0;
-  border: 1px solid #ddd;
-  height: 25px;
-  border-radius: 5px;
-  width: 35px;
+	margin: 30px 15px 0 0;
+	border: 1px solid #ddd;
+	height: 25px;
+	border-radius: 5px;
+	width: 35px;
 }
 
 #roomUploadFile {
-  clear: both;
+	clear: both;
 }
+
 #roomUpSearch {
-  float: left;
+	float: left;
 }
+
 #roomUpSearchTxt {
-  font-size: 20px;
-  font-weight: 800;
-  margin-bottom: 50px;
+	font-size: 20px;
+	font-weight: 800;
+	margin-bottom: 50px;
 }
-#roomUpSearch input,
-#roomUpSearch p {
-  margin-left: 30px;
+
+#roomUpSearch input, #roomUpSearch p {
+	margin-left: 30px;
 }
+
 #roomUpMap #map {
-  float: right;
+	float: right;
 }
+
 #roomUpFile {
-  clear: both;
-  margin: 0 0 100px 30px;
+	clear: both;
+	margin: 0 0 100px 30px;
 }
+
 #roomUpFile p {
-  font-size: 20px;
-  font-weight: 800;
-  margin: 50px 0;
+	font-size: 20px;
+	font-weight: 800;
+	margin: 50px 0;
 }
+
 .modifyBoard {
 	margin-right: 13px;
 	color: white;
@@ -310,17 +319,18 @@ div#pageBar a {
 	border: none;
 	width: 5em;
 	height: 2em;
-	background: rgb(255,138,61);
+	background: rgb(255, 138, 61);
 	cursor: pointer;
 	border-radius: 50px;
 }
-.deleteBoard{
+
+.deleteBoard {
 	color: white;
 	font-size: 15px;
 	border: none;
 	width: 5em;
 	height: 2em;
-	background: rgb(255,138,61);
+	background: rgb(255, 138, 61);
 	cursor: pointer;
 	border-radius: 50px;
 }
@@ -358,6 +368,12 @@ div#pageBar a {
 	margin: 50px 10px 50px 20px;
 }
 
+#roomDetailView6 {
+	width: 180px;
+	float: left;
+	margin: 50px 0px 50px -50px;
+}
+
 .roomDetail-info {
 	font-size: 16px;
 }
@@ -368,10 +384,10 @@ div#pageBar a {
 }
 
 #profileImg {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-bottom: 20px;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	margin-bottom: 20px;
 }
 
 .brokerPhoneBtn {
@@ -387,6 +403,19 @@ div#pageBar a {
 	cursor: pointer;
 }
 
+.brokerChatBtn {
+	color: white;
+	font-size: 15px;
+	border:none;
+	top:0;
+	left:-50px;
+	width:120px;
+	height:50px;
+	background:rgb(255, 138, 61);
+	border-radius: 50px;
+	cursor: pointer;
+}
+
 #roomDetailView4 p {
 	text-align: right;
 }
@@ -396,14 +425,15 @@ div#pageBar a {
 	margin-left: 90em;
 	font-size: 12px;
 	width: fit-content;
-	display:inline-block;
+	display: inline-block;
 }
+
 #roomDetail-LikeAlarm {
 	clear: both;
 	margin-left: 12em;
 	font-size: 12px;
 	width: 81%;
-	display:inline-block;
+	display: inline-block;
 }
 
 #roomDetail-info2 img {
@@ -413,6 +443,7 @@ div#pageBar a {
 	vertical-align: middle;
 	margin: 0 10px;
 }
+
 #roomDetail-LikeAlarm img {
 	cursor: pointer;
 	width: 25px;
@@ -428,6 +459,7 @@ div#pageBar a {
 #roomDetail-LikeAlarm img:hover {
 	color: rgb(255, 138, 61);
 }
+
 .roomDetail-info3 {
 	margin-left: 100px;
 	height: 220px;
@@ -556,12 +588,13 @@ div#pageBar a {
 	text-align: center;
 	margin-bottom: 20px;
 }
+
 .roomDetail-info6 #roomLocation {
-  text-align: center;
-  margin-bottom: 20px;
-  border: none;
-  width: 1200px;
-  outline: none;
+	text-align: center;
+	margin-bottom: 20px;
+	border: none;
+	width: 1200px;
+	outline: none;
 }
 
 .roomDetail-info6 .map-title {
@@ -584,54 +617,54 @@ div#pageBar a {
 	font-weight: 800;
 }
 
-.reviewform textarea{
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
+.reviewform textarea {
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
 }
 
 .rating .rate_radio {
-    position: relative;
-    display: inline-block;
-    z-index: 20;
-    opacity: 0.001;
-    width: 60px;
-    height: 60px;
-    background-color: #fff;
-    cursor: pointer;
-    vertical-align: top;
-    display: none;
+	position: relative;
+	display: inline-block;
+	z-index: 20;
+	opacity: 0.001;
+	width: 60px;
+	height: 60px;
+	background-color: #fff;
+	cursor: pointer;
+	vertical-align: top;
+	display: none;
 }
 
-.rating .rate_radio + label {
-    position: relative;
-    display: inline-block;
-    margin-left: -4px;
-    z-index: 10;
-    width: 60px;
-    height: 60px;
-    background-image: url('../images/starrate.png');
-    background-repeat: no-repeat;
-    background-size: 60px 60px;
-    cursor: pointer;
-    background-color: #f0f0f0;
+.rating .rate_radio+label {
+	position: relative;
+	display: inline-block;
+	margin-left: -4px;
+	z-index: 10;
+	width: 60px;
+	height: 60px;
+	background-image: url('../images/starrate.png');
+	background-repeat: no-repeat;
+	background-size: 60px 60px;
+	cursor: pointer;
+	background-color: #f0f0f0;
 }
 
-.rating .rate_radio:checked + label {
-    background-color: #ffff00;
+.rating .rate_radio:checked+label {
+	background-color: #ffff00;
 }
 
 .warning_msg {
-    display: none;
-    position: relative;
-    text-align: center;
-    background: #ffffff;
-    line-height: 26px;
-    width: 100%;
-    color: red;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid #e0e0e0;
+	display: none;
+	position: relative;
+	text-align: center;
+	background: #ffffff;
+	line-height: 26px;
+	width: 100%;
+	color: red;
+	padding: 10px;
+	box-sizing: border-box;
+	border: 1px solid #e0e0e0;
 }
 
 #save {
@@ -647,70 +680,75 @@ div#pageBar a {
 	cursor: pointer;
 }
 
-#tbl-review{
+#tbl-review {
 	margin-top: 3em;
 	margin-left: 6em;
 	width: 100%;
 }
-.reviewMemProfileIdDate{
+
+.reviewMemProfileIdDate {
 	display: inline-block;
 }
-.coveredMemberProfileWriterDate{
+
+.coveredMemberProfileWriterDate {
 	display: inline-flex;
 }
-.review-writer{
+
+.review-writer {
 	margin-left: 5px;
 	margin-top: 0px;
 	font-size: 16px;
-	font-weight: 600;	
+	font-weight: 600;
 }
-.review-date{
+
+.review-date {
 	font-size: 11px;
 	font-weight: 600;
 	margin-left: 13px;
 	color: darkgray;
 	margin-top: 5px;
 }
-.review-rating{
+
+.review-rating {
 	color: rgb(255, 138, 61);
 	font-size: 17px;
 	margin-left: 2.5em;
 }
 
-.reviewContentAndDelete{
+.reviewContentAndDelete {
 	display: block;
 	margin-bottom: 1em;
 }
 
-.reviewupdate{
-	display:inline-block;
+.reviewupdate {
+	display: inline-block;
 	float: right;
 }
 
-.reviewdelete{
-	display:inline-block;
+.reviewdelete {
+	display: inline-block;
 	float: right;
 }
 
-.Reviewbtn-update{
+.Reviewbtn-update {
 	border: none;
 	background-color: transparent;
-	color: rgb(255,138,61);
+	color: rgb(255, 138, 61);
 	font-weight: 900;
 	margin-right: 5em;
 	cursor: pointer;
 }
 
-.Reviewbtn-delete{
+.Reviewbtn-delete {
 	border: none;
 	background-color: transparent;
-	color: rgb(255,138,61);
+	color: rgb(255, 138, 61);
 	font-weight: 900;
 	margin-right: 5em;
 	cursor: pointer;
 }
 
-.ReviewMainContent{
+.ReviewMainContent {
 	margin-left: 1em;
 }
 
@@ -718,9 +756,11 @@ div#pageBar a {
 #map {
 	margin: 0 auto;
 }
+
 #roomMap {
-  margin: 0 auto;
+	margin: 0 auto;
 }
+
 #closeBtn, #find_closeBtn {
 	position: absolute;
 	font-size: 30px;
@@ -730,7 +770,8 @@ div#pageBar a {
 	left: 467px;
 	border: none;
 }
-.closeShowBrokerBtn{
+
+.closeShowBrokerBtn {
 	position: absolute;
 	font-size: 30px;
 	cursor: pointer;
@@ -739,6 +780,7 @@ div#pageBar a {
 	left: 370px;
 	border: none;
 }
+
 .closeBtn, #find_closeBtn {
 	position: absolute;
 	font-size: 30px;
@@ -748,26 +790,31 @@ div#pageBar a {
 	left: 467px;
 	border: none;
 }
+
 #cerFrm h3 {
 	text-align: center;
 	margin: 20px 0;
 	color: black;
 	font-size: x-large
 }
+
 #cerFrm #colorisred {
 	text-align: center;
 	margin-bottom: 20px;
 	color: red;
 	font-weight: 800;
 }
+
 #cerFrm #textalignleft {
 	text-align: left;
 	font-weight: 800;
 }
+
 #cerFrm .colorgray {
 	text-align: left;
 	color: gray;
 }
+
 #certificationWrap {
 	display: none;
 	background-color: rgba(0, 0, 0, 0.7);
@@ -778,6 +825,7 @@ div#pageBar a {
 	margin: 0;
 	position: fixed;
 }
+
 #certification {
 	display: none;
 	margin: 0;
@@ -791,6 +839,7 @@ div#pageBar a {
 	height: 496px;
 	width: 500px;
 }
+
 #cerFrm #cerTitle {
 	margin: 25px 0 0 0;
 	font-weight: 800;
@@ -813,8 +862,8 @@ div.nav-bar {
 	top: 23%;
 }
 /*****************************************/
-.filter-roomtype__select__content{
-	border-bottom: 1px solid rgb(235,235,235);
+.filter-roomtype__select__content {
+	border-bottom: 1px solid rgb(235, 235, 235);
 	text-align: center;
 	padding-top: 1em;
 	padding-bottom: 1em;
@@ -829,6 +878,7 @@ div.nav-bar {
 	border-radius: 10px;
 	cursor: pointer;
 }
+
 #allcategory-reset {
 	color: white;
 	border: none;
@@ -838,20 +888,24 @@ div.nav-bar {
 	border-radius: 10px;
 	cursor: pointer;
 }
-.FakeForSaleParagraph{
+
+.FakeForSaleParagraph {
 	color: red;
 	font-weight: 900;
 }
-.CheckYourIdentity{
+
+.CheckYourIdentity {
 	font-weight: bolder;
 }
+
 #cerEmail {
-  margin-top: 10px;
-  margin-right: 0px;
-  margin-bottom: 10px;
-  margin-left: 8em;
-  width: 215px;
+	margin-top: 10px;
+	margin-right: 0px;
+	margin-bottom: 10px;
+	margin-left: 8em;
+	width: 215px;
 }
+
 #cerNumber {
 	margin-top: 10px;
 	margin-right: 0px;
@@ -859,6 +913,7 @@ div.nav-bar {
 	margin-left: 8em;
 	width: 268px;
 }
+
 .cer-field {
 	padding: 5px;
 }

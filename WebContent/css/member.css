@@ -1,154 +1,149 @@
 ﻿@CHARSET "UTF-8";
 /********* 회원정보 수정 페이지 **********/
-.edit-info1,
-.edit-info2,
-.edit-info3{
-    display: none;
-    border-radius: 15px;
-    clear: both;
-    padding: 20px;
-    margin: 50px auto;
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
-    width: 800px;
-    height: 600px;
+.edit-info1, .edit-info2, .edit-info3 {
+	display: none;
+	border-radius: 15px;
+	clear: both;
+	padding: 20px;
+	margin: 50px auto;
+	box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+	width: 800px;
+	height: 600px;
+    /*height: 500px;*/
 }
 
-.edit-info1 table input,
-.edit-info2 table input,
-.edit-info3 table input{
-    width: 100%;
-    padding: 10px 0;
-    margin: 10px 20px;
-    border: none;
-    border-bottom: 1px solid #999;
-    outline: none;
+.edit-info1 table input, .edit-info2 table input, .edit-info3 table input
+	{
+	width: 100%;
+	padding: 10px 0;
+	margin: 10px 20px;
+	border: none;
+	border-bottom: 1px solid #999;
+	outline: none;
 }
 
 .editBtn input {
-    color: white;
-    border: none;
-    top: 0;
-    left: 0;
-    width: 120px;
-    height: 30px;
-    background: rgb(255, 138, 61);
-    border-radius: 10px;
-    cursor: pointer;
+	color: white;
+	border: none;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 30px;
+	background: rgb(255, 138, 61);
+	border-radius: 10px;
+	cursor: pointer;
 }
 
 .editBtn {
-    margin-top: 120px;
+	margin-top: 120px;
 }
 
 #memberId_ {
-    border: none;
+	border: none;
 }
 
-.edit-infoPage,
-.edit-passwordPage,
-.edit-certificatePage {
-    padding: 30px 250px;
+.edit-infoPage, .edit-passwordPage, .edit-certificatePage {
+	padding: 30px 250px;
 }
 
-.edit-infoPage p,
-.edit-passwordPage p,
-.edit-certificatePage p {
-    text-align: center;
-    font-size: 25px;
-    font-weight: 800;
-    margin-bottom: 40px;
+.edit-infoPage p, .edit-passwordPage p, .edit-certificatePage p {
+	text-align: center;
+	font-size: 25px;
+	font-weight: 800;
+	margin-bottom: 40px;
 }
 
 #deleteMem {
-    position: absolute;
-    left: 930px;
-    font-size: 12px;
-    text-decoration: underline;
-    cursor: pointer;
-    outline: 0;
-    border: 0;
-    background-color: white;
+	position: absolute;
+	left: 930px;
+	font-size: 12px;
+	text-decoration: underline;
+	cursor: pointer;
+	outline: 0;
+	border: 0;
+	background-color: white;
 }
-
 
 /********* 프로필 페이지 **********/
-#chatBtn{
-	width:55px;
-	height:55px;
+#chatBtn {
+	width: 55px;
+	height: 55px;
 	line-height: 10px;
 	font-size: 50px;
-	color:white;
-	outline:none;
-	border:none;
+	color: white;
+	outline: none;
+	border: none;
 	background-color: white;
 	border-radius: 50%;
-	position:fixed;
-	right:30px;
+	position: fixed;
+	right: 30px;
 	bottom: 30px;
-	
-	
-}
-div#talkjs-container{
-	display:none;
-	position:fixed;
-	width: 90%;
-    height: 500px;
-    
-}
-.mypage-alldiv{
-	margin-top: 2em;
-	margin-left: 7em;
-	margin-bottom: 14em;
-}
-.mypage-questiondiv{
-	margin-top: 2em;
-	margin-left: 7em;
-	margin-bottom: 14em;
-}
-.mypage-Likediv{
-	margin-top: 2em;
-	margin-left: 7em;
-	margin-bottom: 14em;
-}
-.mypage-profile1,
-.mypage-profile2,
-.mypage-profile3 {
-    border-radius: 15px;
-    clear: both;
-    padding: 20px;
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
-    width: 250px;
-    height: 400px;
-    display: inline-block;
 }
 
-.mypage-profile2_2,
+div#talkjs-container {
+	display: none;
+	position: fixed;
+	width: 90%;
+	height: 500px;
+}
+
+.mypage-alldiv {
+	margin-top: 2em;
+	margin-left: 7em;
+	margin-bottom: 14em;
+}
+
+.mypage-questiondiv {
+	margin-top: 2em;
+	margin-left: 7em;
+	margin-bottom: 14em;
+}
+
+.mypage-Likediv {
+	margin-top: 2em;
+	margin-left: 7em;
+	margin-bottom: 14em;
+}
+
+.mypage-profile1, .mypage-profile2, .mypage-profile3 {
+	border-radius: 15px;
+	clear: both;
+	padding: 20px;
+	box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+	width: 250px;
+	height: 400px;
+	display: inline-block;
+}
+
+.mypage-profile2_2, .mypage-profile3_3 {
+	display: none;
+}
+
+.mypage-profile2, .mypage-profile3 {
+	display: none;
+}
+
 .mypage-profile3_3 {
-  display: none;
-}
-.mypage-profile2,
-.mypage-profile3 {
-    display: none;
-}
-.mypage-profile3_3{
 	width: 75em;
 }
 
 .mypage-allView input {
-  text-align: center;
-  border: none;
-  top: 0;
-  left: 0;
-  width: 120px;
-  height: 30px;
-  border-radius: 10px;
-  cursor: pointer;
+	text-align: center;
+	border: none;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 30px;
+	border-radius: 10px;
+	cursor: pointer;
 }
+
 .mypage-allView .mypage-id {
-  font-size: 25px;
-  font-weight: 800;
-  height: 40px;
+	font-size: 25px;
+	font-weight: 800;
+	height: 40px;
 }
+
 .allview-content {
 	display: inline-block;
 	vertical-align: top;
@@ -157,152 +152,170 @@ div#talkjs-container{
 	clear: both;
 	padding: 20px;
 	width: auto;
-	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.3);
+	box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
 	height: auto;
 }
-.allviewPageBar{
-	clear:both;
-	text-align: center; 
-	font-size: large; 
+
+.allviewPageBar {
+	clear: both;
+	text-align: center;
+	font-size: large;
 	font-weight: 600;
 }
-.brokerSales{
-	display:inline-block;
+
+.brokerSales {
+	display: inline-block;
 	vertical-align: top;
 	border-radius: 15px;
 	clear: both;
 	padding: 20px;
-	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.3);
+	box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
 	height: 20em;
 	margin-left: 3em;
 	margin-top: 2em;
 	width: 41em;
 }
-.memberIdparagraph{
+
+.memberIdparagraph {
 	margin-top: 2em;
 }
-.countPercentMemberId{
-	color: rgb(255,138,61);
+
+.countPercentMemberId {
+	color: rgb(255, 138, 61);
 }
+
 .brokerSales p {
-  text-align: center;
-  font-size: 35px;
-  font-weight: 800;
-  margin-top: 1em;
-  color: rgb(220, 220, 220);
+	text-align: center;
+	font-size: 35px;
+	font-weight: 800;
+	margin-top: 1em;
+	color: rgb(220, 220, 220);
 }
-.myquestionState-div{
+
+.myquestionState-div {
 	border-bottom: 1px solid black;
 }
-.myStatequestion{
-	margin-left: 10px; 
-	margin-bottom: 14px; 
-	font-size: x-large; 
+
+.myStatequestion {
+	margin-left: 10px;
+	margin-bottom: 14px;
+	font-size: x-large;
 	font-weight: 600;
 }
-.myLikelistallview{
-	font-weight: 900; font-size:x-large; color: rgb(255,138,61); margin-bottom: 1em; margin-top: 1em;
+
+.myLikelistallview {
+	font-weight: 900;
+	font-size: x-large;
+	color: rgb(255, 138, 61);
+	margin-bottom: 1em;
+	margin-top: 1em;
 }
-.HasnotLikelistallview{
-	margin-left: 10px; 
-	margin-bottom: 14px; 
-	font-size: x-large; 
+
+.HasnotLikelistallview {
+	margin-left: 10px;
+	margin-bottom: 14px;
+	font-size: x-large;
 	font-weight: 600;
 }
-.hasnotClickLikeboard{
+
+.hasnotClickLikeboard {
 	margin-left: 10px;
 	font-size: x-large;
 	font-weight: 600;
 }
-.myallview-question{
+
+.myallview-question {
 	font-weight: 900;
 	font-size: x-large;
-	color: rgb(255,138,61);
+	color: rgb(255, 138, 61);
 	margin-bottom: 1em;
 	margin-top: 1em;
 }
-.ClickedShowTotaLikelList{
+
+.ClickedShowTotaLikelList {
 	margin-bottom: 1em;
 	margin-top: 1em;
 	font-weight: 900;
 	font-size: x-large;
-	color: rgb(255,138,61);
+	color: rgb(255, 138, 61);
 }
-.myLikeCountViewtotal{
+
+.myLikeCountViewtotal {
 	margin-bottom: 1em;
 	margin-top: 1em;
 	font-weight: 900;
 	font-size: x-large;
-	color: rgb(255,138,61);
+	color: rgb(255, 138, 61);
 }
 
 .mypage-allView input {
-    text-align: center;
-    border: none;
-    top: 0;
-    left: 0;
-    width: 120px;
-    height: 30px;
-    border-radius: 10px;
-    cursor: pointer;
+	text-align: center;
+	border: none;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 30px;
+	border-radius: 10px;
+	cursor: pointer;
 }
 
 .mypage-allView table {
-  width: 80%;
-  height: 300px;
-  margin: 20px auto;
-  text-align: center;
+	width: 80%;
+	height: 300px;
+	margin: 20px auto;
+	text-align: center;
 }
 
 .mypage-allView table td {
-  margin-bottom: 15px;
+	margin-bottom: 15px;
 }
 
 .mypage-allView .mypage-id {
-    font-size: 25px;
-    font-weight: 800;
-    height: 40px;
+	font-size: 25px;
+	font-weight: 800;
+	height: 40px;
 }
 
 .mypage-allView table {
-    width: 80%;
-    height: 300px;
-    margin: 20px auto;
-    text-align: center;
+	width: 80%;
+	height: 300px;
+	margin: 20px auto;
+	text-align: center;
 }
 
 .mypage-allView table td {
-    margin-bottom: 15px;
+	margin-bottom: 15px;
 }
 
 .filebox input[type="file"] {
-    position: absolute;
-    width: 0;
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 0;
+	position: absolute;
+	width: 0;
+	height: 0;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
 }
 
 .filebox label {
-    display: inline-block;
-    padding: 5px 20px;
-    vertical-align: middle;
-    color: white;
-    border: none;
-    top: 0;
-    left: 0;
-    background: rgb(255, 138, 61);
-    border-radius: 10px;
-    cursor: pointer;
+	display: inline-block;
+	padding: 5px 20px;
+	vertical-align: middle;
+	color: white;
+	border: none;
+	top: 0;
+	left: 0;
+	background: rgb(255, 138, 61);
+	border-radius: 10px;
+	cursor: pointer;
 }
 
 #profileImg {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
 }
-.myLikeListViewCount{
+
+.myLikeListViewCount {
 	width: 46em;
 	height: 11em;
 	margin-top: 6em;
@@ -311,7 +324,7 @@ div#talkjs-container{
 	border-radius: 15px;
 	clear: both;
 	padding: 20px;
-	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.3);
+	box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
 }
 /* .ClickedLikeListShow{ */
 /* 	width: 53em; */
@@ -323,26 +336,30 @@ div#talkjs-container{
 /* 	padding: 20px; */
 /* 	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.3); */
 /* } */
-.SearchRoomLikeparagraph{
-	font-weight: 800; font-size: large;
+.SearchRoomLikeparagraph {
+	font-weight: 800;
+	font-size: large;
 }
-.myPageRoomImgTitle{
+
+.myPageRoomImgTitle {
 	text-align: center;
 	font-weight: 900;
 }
+
 #my_pageRoomImg {
-  width: 247px;
-  display: inline-block;
-  vertical-align: top;
-  
+	width: 247px;
+	display: inline-block;
+	vertical-align: top;
 }
-.ClickedLikeListPageBar{
-	clear:both;
+
+.ClickedLikeListPageBar {
+	clear: both;
 	text-align: center;
 	font-size: medium;
 	font-weight: 600;
 }
-.SearchRoomclickLikeEnrollDate{
+
+.SearchRoomclickLikeEnrollDate {
 	font-weight: 400;
 	font-size: medium;
 	float: right;
@@ -360,16 +377,19 @@ div#talkjs-container{
 	font-size: 25px;
 	text-align: center;
 }
+
 .profile-nav {
 	position: relative;
 	top: 23%;
 	cursor: pointer;
 }
+
 .setting-nav {
 	position: relative;
 	top: 23%;
 	cursor: pointer;
 }
+
 .sub1 {
 	width: 100%;
 	min-width: 1400px;
@@ -382,21 +402,25 @@ div#talkjs-container{
 	font-size: 20px;
 	text-align: center;
 }
+
 .click1 {
 	position: relative;
 	top: 23%;
 	cursor: pointer;
 }
+
 .click2 {
 	position: relative;
 	top: 23%;
 	cursor: pointer;
 }
+
 .click3 {
 	position: relative;
 	top: 23%;
 	cursor: pointer;
 }
+
 .sub2 {
 	width: 100%;
 	min-width: 1400px;
@@ -410,25 +434,25 @@ div#talkjs-container{
 	text-align: center;
 	display: none;
 }
+
 .click4 {
 	position: relative;
 	top: 23%;
 	cursor: pointer;
 }
+
 .click5 {
 	position: relative;
 	top: 23%;
 	cursor: pointer;
 }
+
 .click6 {
 	position: relative;
 	top: 23%;
 	cursor: pointer;
 }
 
-
-
 /********* 회원정보 수정 페이지 **********/
-
 
 /********* 회원정보 수정 페이지 **********/

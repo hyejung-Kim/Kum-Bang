@@ -36,8 +36,11 @@ public class SearchRoomServlet extends HttpServlet {
 		//1. 사용자 입력값
 		String room_val = request.getParameter("room_val");
 		String tax_val = request.getParameter("tax_val");
-		int startPrice = Integer.parseInt(request.getParameter("startPrice"));
-		int endPrice = Integer.parseInt(request.getParameter("endPrice"));
+		/*
+		 * int startPrice = Integer.parseInt(request.getParameter("startPrice")); int
+		 * endPrice = Integer.parseInt(request.getParameter("endPrice"));
+		 */
+		int price = Integer.parseInt(request.getParameter("price"));
 		int fee = Integer.parseInt(request.getParameter("fee"));
 		int startSize = Integer.parseInt(request.getParameter("startSize"));
 		int endSize = Integer.parseInt(request.getParameter("endSize"));
@@ -52,15 +55,15 @@ public class SearchRoomServlet extends HttpServlet {
 		
 		//2. 업무로직 : 게시글 목록 조회
 		//a. contents 영역
-		List<RoomBoard> list = boardService.searchBoardList(room_val, tax_val, startPrice, endPrice, fee, startSize, endSize, cPage, numPerPage); 
+		List<RoomBoard> list = boardService.searchBoardList(room_val, tax_val, price, fee, cPage, numPerPage); 
 		//System.out.println("list@servlet="+list);
 		
 		//b. pageBar 영역
-		int totalContents = boardService.selectTotalContents(room_val, tax_val, startPrice, endPrice, fee, startSize, endSize);
+		int totalContents = boardService.selectTotalContents(room_val, tax_val, price, fee);
 		String url = request.getRequestURI()
 					+ "?room_val=" + room_val 
 					+ "&tax_val=" + tax_val 
-					+ "&price=" + endPrice 
+					+ "&price=" + price 
 					+ "&fee=" + fee 
 					+ "&";
 		String pageBar = Utils.getPageBarHtml(cPage, numPerPage, totalContents, url);

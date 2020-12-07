@@ -1,20 +1,20 @@
 <%@page import="member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="broker.model.vo.Broker" %>
+	pageEncoding="UTF-8"%>
+<%@ page import="broker.model.vo.Broker"%>
 <%
 	//session : 선언없이 사용할 수 있는 jsp내장객체
-	Broker brokerLoggedIn = (Broker)session.getAttribute("brokerLoggedIn");
-	Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
-
-%> 
+	Broker brokerLoggedIn = (Broker) session.getAttribute("brokerLoggedIn");
+	Member memberLoggedIn = (Member) session.getAttribute("memberLoggedIn");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>KumBang</title>
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css" />
-<script src="<%= request.getContextPath() %>/js/jquery-3.5.1.js"></script>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/style.css" />
+<script src="<%=request.getContextPath()%>/js/jquery-3.5.1.js"></script>
 <script>
 
 //로그인
@@ -39,8 +39,34 @@ $(function(){
 	});
 	
 });
-
 //중복체크
+$(document).ready(function(){
+	$("#enrollUserId").blur(function(){
+		
+		let memberId = $("#enrollUserId").val();
+		$.ajax({
+			url : "<%=request.getContextPath()%>/member/checkIdDuplicate",
+			method: "GET", 
+			data: {"memberId": memberId}, 
+			success: function(data){
+				if(data=="notUsable"){
+					// 아이디 중복 시 문구
+					$("#id_check").text("ID in use");
+					$("#id_check").css("color", "red");
+					$("#submit").attr("disabled", true);
+				}else if(memberId.length!=0&&data=="usable"){
+					$("#id_check").text("Available ID");
+					$("#id_check").css("color", "blue");
+				}
+			}, error : function() {
+					console.log("실패");
+			}
+		});
+		
+	});
+	
+})
+<%-- //중복체크
 $(document).ready(function(){
 	$("#userId").blur(function(){
 		
@@ -66,13 +92,14 @@ $(document).ready(function(){
 		
 	});
 	
-})
+}) --%>
 
 //회원 가입
 $(function(){
 	$("#register").submit(function(){
 		//아이디검사
-		let $memberId = $("#userId");
+		let $memberId = $("#enrollUserId");
+		//let $memberId = $("#userId");
 		
 		if(!/^[\w]{4,}$/.test($memberId.val())){
 			alert("아이디가 유효하지 않습니다.");
@@ -119,75 +146,149 @@ $(document).ready(function(){
    		   $(".filter-select__typelist").hide();
    });
 });
+//읽지않은 채팅목록
+function getUnread() {
+	$.ajax({
+		type: "POST",
+		url:"<%=request.getContextPath()%>/userChat/chatUnread",
+			data : {
+				"userID" : $("#login-profile").val(),
+			},
+			success : function(result) {
+				if (result >= 1) {
+					showUnread(result);
+				} else {
+					showUnread('');
+				}
+			}
+	});
+}
+//읽지않은 메시지갯수
+function getInfiniteUnread() {
+	setInterval(function() {
+		getUnread();
+	}, 4000);
+}
+function showUnread(result) {
+	$("#unread").html(result);
+}
+$(document).ready(function() { //성공적으로 문서가 다 불러와지면 실행
+	getUnread();
+	getInfiniteUnread();
+});
 </script>
 </head>
 <body>
-		<!-- 헤더 -->
-		<header class="navbar navbar-expand" id="mainNav">
-			<div class="container">
-				<a href="<%=request.getContextPath() %>" class="navbar-brand">금방</a>
-				<div class="navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav">
-						<% if(brokerLoggedIn == null) { %>
-							<li class="nav-item"><a href="<%=request.getContextPath() %>/community/communityQnA" class="nav-link">커뮤니티</a></li>
-							<li class="nav-item"><a href="<%=request.getContextPath() %>/brokerBoard/boardList" class="nav-link">방 찾기</a></li>
-							<li class="nav-item"><a href="#" class="nav-link" onclick="signupbtn()">중개인로그인</a></li>
-						<% } else { %>
-							<li class="nav-item-community"><a href="<%=request.getContextPath() %>/community/communityQnA" class="nav-link">커뮤니티</a></li>
-							<li class="nav-item-room"><a href="<%=request.getContextPath() %>/brokerBoard/boardList" class="nav-link">방 찾기</a></li>
-							<li class="nav-item"><a href="#" class="nav-user-link"><img style="background-color: rgb(0, 255, 0); border-radius: 60%;" src="<%=request.getContextPath()%>/images/user.png" /></a></li>
-							
-							<ul class="profile__list">
-			                  <li class="login-profile" id="login-profile-img" ><img style="background-color: rgb(0, 255, 0); border-radius: 60%;" src="<%=request.getContextPath()%>/images/user.png" /></li>
-			                  <li class="login-profile"><%= brokerLoggedIn.getBr_name() %></li>
-			                  <li class="login-profile" id="login-profile-email"><%= brokerLoggedIn.getEmail() %></li>
-			                  <li class="login-mypage" id="login-mypage-info" ><div onclick="location.href='<%= request.getContextPath() %>/broker/brokerProfileView'">내 정보 보기</div></li>
-			                  <li class="login-mypage" id="login-mypage-logout"><div onclick="location.href='<%=request.getContextPath()%>/broker/logout'">로그아웃</div></li> 
-			              	</ul>					
-						<% } %>
+	<!-- 헤더 -->
+	<header class="navbar navbar-expand" id="mainNav">
+		<div class="container">
+			<a href="<%=request.getContextPath()%>" class="navbar-brand">금방</a>
+			<div class="navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav">
+					<%
+						if (brokerLoggedIn == null) {
+					%>
+					<li class="nav-item"><a
+						href="<%=request.getContextPath()%>/community/communityQnA"
+						class="nav-link">커뮤니티</a></li>
+					<li class="nav-item"><a
+						href="<%=request.getContextPath()%>/brokerBoard/boardList"
+						class="nav-link">방 찾기</a></li>
+					<li class="nav-item"><a href="#" class="nav-link"
+						onclick="signupbtn()">중개인로그인</a></li>
+					<%
+						} else {
+					%>
+					<li class="nav-item-room"><a
+						href="<%=request.getContextPath()%>/userChat/chatBox"
+						class="nav-link">채팅목록<span id="unread"
+							class="label label-info"></span></a></li>
+					<li class="nav-item-community"><a
+						href="<%=request.getContextPath()%>/community/communityQnA"
+						class="nav-link">커뮤니티</a></li>
+					<li class="nav-item-room"><a
+						href="<%=request.getContextPath()%>/brokerBoard/boardList"
+						class="nav-link">방 찾기</a></li>
+					<li class="nav-item"><a href="#" class="nav-user-link"><img
+							style="background-color: rgb(0, 255, 0); border-radius: 60%;"
+							src="<%=request.getContextPath()%>/images/user.png" /></a></li>
+
+					<ul class="profile__list">
+						<li class="login-profile" id="login-profile-img"><img
+							style="background-color: rgb(0, 255, 0); border-radius: 60%;"
+							src="<%=request.getContextPath()%>/images/user.png" /></li>
+						<li class="login-profile"><%=brokerLoggedIn.getBr_name()%></li>
+						<li class="login-profile" id="login-profile-email"><%=brokerLoggedIn.getEmail()%></li>
+						<li class="login-mypage" id="login-mypage-info"><div
+								onclick="location.href='<%=request.getContextPath()%>/broker/brokerProfileView'">내
+								정보 보기</div></li>
+						<li class="login-mypage" id="login-mypage-logout"><div
+								onclick="location.href='<%=request.getContextPath()%>/broker/logout'">로그아웃</div></li>
 					</ul>
-				</div>
+					<%
+						}
+					%>
+				</ul>
 			</div>
-		</header>
-		
-		<!-- 로그인 창 -->
-		<div id="signWrap"></div> 
-	        <div id="wrap">
-	            <div class="form-wrap">
-	                <div class="button-wrap">
-	                    <div id="btn"></div>
-	                    <button type="button" id="loginBtn" class="togglebtn" onclick="login()">로그인</button>
-	                    <button type="button" id="registerBtn" class="togglebtn" onclick="register()">회원가입</button>
-	                </div>
-	                <input type="button" class="CloseBrokerBtn" id="closeBtn" value="x" onclick="closeBtn();">
-	                
-	                <form action="<%= request.getContextPath() %>/broker/login" id="login" method="post" class="input-group">
-		                <div class="social-icons">
-		                    <img src="<%= request.getContextPath() %>/images/naver.png" alt="naver">
-		                    <img src="<%= request.getContextPath() %>/images/facebook.png" alt="facebook">
-		                    <img src="<%= request.getContextPath() %>/images/google.png" alt="google">
-		                </div> 
-	                    <input type="text" id="br_cp_id" name="br_cp_id" class="input-field" placeholder="등록번호를 입력해주세요" required />
-	                    <input type="password" id="br_loginPwd" name="password" class="input-field" placeholder="비밀번호를 입력해주세요" required>
-	                    <div id="chkWrap">
-		                    <div class="userChk" onclick="location.href='<%= request.getContextPath() %>/#'" >일반회원이세요?</div>
-	                    </div>
-	                    <input type="submit" class="submit" value="로그인" />
-	                    <a id="findLink" href="<%= request.getContextPath() %>/member/findMember">아이디 찾기</a>
-	                </form>
-	                <form id="register" action="<%= request.getContextPath() %>/member/enroll" method="post" onsubmit="return resisterVal();" class="input-group">
-	                    <input type="text" id="userId" name="memberId" class="input-field" placeholder="User ID" required>
-	                    <div id="id_check"></div>
-	                    <input type="email" id="userEmail" name="email" class="input-field" placeholder=abc@xyz.com required>
-	                    <input type="password" id="userPwd" name="password" class="input-field" placeholder="Enter Password" required>
-	                    <input type="password" id="userPwdChk" class="input-field" placeholder="Enter Password Check" required>
-	                    <input type="tel" id="userPhone" name="phone" class="input-field" placeholder="(-없이)01012345678" maxlength="11" required>
-	                    <button class="submit">회원가입</button>
-	                    <a href="<%= request.getContextPath() %>/broker/enroll">중개인 회원가입</a>
-	                </form>
-	            </div>
-	        </div>
-		<script>
+		</div>
+	</header>
+
+	<!-- 로그인 창 -->
+	<div id="signWrap"></div>
+	<div id="wrap">
+		<div class="form-wrap">
+			<div class="button-wrap">
+				<div id="btn"></div>
+				<button type="button" id="loginBtn" class="togglebtn"
+					onclick="login()">로그인</button>
+				<button type="button" id="registerBtn" class="togglebtn"
+					onclick="register()">회원가입</button>
+			</div>
+			<input type="button" class="CloseBrokerBtn" id="closeBtn" value="x"
+				onclick="closeBtn();">
+
+			<form action="<%=request.getContextPath()%>/broker/login"
+				id="login" method="post" class="input-group">
+				<div class="social-icons">
+					<img src="<%=request.getContextPath()%>/images/naver.png"
+						alt="naver"> <img
+						src="<%=request.getContextPath()%>/images/facebook.png"
+						alt="facebook"> <img
+						src="<%=request.getContextPath()%>/images/google.png"
+						alt="google">
+				</div>
+				<input type="text" id="userID" name="br_cp_id" class="input-field"
+					placeholder="등록번호를 입력해주세요" required />
+				<!--<input type="text" id="br_cp_id" name="br_cp_id" class="input-field" placeholder="등록번호를 입력해주세요" required />-->
+				<input type="password" id="br_loginPwd" name="password"
+					class="input-field" placeholder="비밀번호를 입력해주세요" required>
+				<div id="chkWrap">
+					<div class="userChk"
+						onclick="location.href='<%=request.getContextPath()%>/#'">일반회원이세요?</div>
+				</div>
+				<input type="submit" class="submit" value="로그인" /> <a id="findLink"
+					href="<%=request.getContextPath()%>/member/findMember">아이디 찾기</a>
+			</form>
+			<form id="register"
+				action="<%=request.getContextPath()%>/member/enroll" method="post"
+				onsubmit="return resisterVal();" class="input-group">
+				<input type="text" id="userId" name="memberId" class="input-field"
+					placeholder="User ID" required>
+				<div id="id_check"></div>
+				<input type="email" id="userEmail" name="email" class="input-field"
+					placeholder=abc@xyz.com required> <input type="password"
+					id="userPwd" name="password" class="input-field"
+					placeholder="Enter Password" required> <input
+					type="password" id="userPwdChk" class="input-field"
+					placeholder="Enter Password Check" required> <input
+					type="tel" id="userPhone" name="phone" class="input-field"
+					placeholder="(-없이)01012345678" maxlength="11" required>
+				<button class="submit">회원가입</button>
+				<a href="<%=request.getContextPath()%>/broker/enroll">중개인 회원가입</a>
+			</form>
+		</div>
+	</div>
+	<script>
 		//로그인 관련
 		let x = document.getElementById("login");
 		let y = document.getElementById("register");

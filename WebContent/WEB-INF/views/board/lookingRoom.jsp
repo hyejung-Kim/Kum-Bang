@@ -59,7 +59,10 @@
 </div>
 
 <div id="roomViewCon1">
-
+<%-- 	<h2>
+		전체 게시글 :
+		<%= cnt %>개
+	</h2> --%>
 	<% 
 	 if(list == null || list.isEmpty()){ %>
 	<%--조회된 행이 없는 경우 --%>

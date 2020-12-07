@@ -85,6 +85,7 @@ public class BrokerLoginServlet extends HttpServlet {
 			
 			//세션에 로그인한 사용자 정보 저장
 			session.setAttribute("brokerLoggedIn", b);
+			session.setAttribute("userID", br_cp_id);
 			
 			//리다이렉트 처리
 			//로그인 요청페이지로 이동

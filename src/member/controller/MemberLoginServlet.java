@@ -47,7 +47,8 @@ public class MemberLoginServlet extends HttpServlet {
 				request.setCharacterEncoding("utf-8");
 				
 				//2. 사용자입력값 처리
-				String memberId = request.getParameter("memberId");
+				String memberId = request.getParameter("userID");
+//				String memberId = request.getParameter("memberId");
 				String password = Utils.getEncryptedPassword(request.getParameter("password"));
 				String saveId = request.getParameter("saveId");  //체크박스에 별로 value지정이 없다면 on이라고 값이 넘어옴
 //				System.out.println("memberId@servlet="+memberId);
@@ -91,6 +92,7 @@ public class MemberLoginServlet extends HttpServlet {
 					
 					//세션에 로그인한 사용자 정보 저장
 					session.setAttribute("memberLoggedIn", m);
+					session.setAttribute("userID", memberId);
 					
 					//쿠키(saveId) 처리
 					Cookie c = new Cookie("saveId", memberId);

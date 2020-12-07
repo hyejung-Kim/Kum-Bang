@@ -42,7 +42,6 @@ public class BoardEnrollServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//memberEnroll.jsp view단 forwarding 처리
 		
-		
 		 RequestDispatcher reqDispatcher =
 		  request.getRequestDispatcher("/WEB-INF/board/insertBoard.jsp");
 		 reqDispatcher.forward(request, response);
@@ -104,18 +103,6 @@ public class BoardEnrollServlet extends HttpServlet {
 		
 		//업무로직
 		int result = new BoardService().insertRoom(newRoom);
-		
-		
-		
-	
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		/*

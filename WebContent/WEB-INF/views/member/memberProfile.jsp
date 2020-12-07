@@ -1,5 +1,9 @@
 <%@page import="community.model.vo.ComBoard"%>
 <%@page import="board.model.vo.RoomBoard"%>
+
+<%@page import="java.net.URLDecoder"%>
+<%@page import="java.net.URL"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
@@ -8,15 +12,18 @@
 	href="<%=request.getContextPath()%>/css/member.css" />
 <%
 	List<RoomBoard> likeList = (List<RoomBoard>) request.getAttribute("likeList");
-String pageBar = (String) request.getAttribute("pageBar");
-int cnt = (int) request.getAttribute("totalContents");
-List<ComBoard> comList = (List<ComBoard>) request.getAttribute("comList");
-int qnaCnt = (int) request.getAttribute("cnt");
+	String pageBar = (String) request.getAttribute("pageBar");
+	int cnt = (int) request.getAttribute("totalContents");
+	List<ComBoard> comList = (List<ComBoard>) request.getAttribute("comList");
+	int qnaCnt = (int) request.getAttribute("cnt");
+
+	String cp = request.getContextPath();
+	request.setCharacterEncoding("UTF-8");
+
+	Cookie[] ck = request.getCookies();
 %>
 
-
 <script>
-
 function pop(img) {
 	 var win = window.open('', 'Detail', 'width=0, height=0, menubar=0, toolbar=0, directories=0, scrollbars=1, status=0, location=0, resizable=1');
 	 op="<html><head><title>크게 보기</title></head>";
@@ -109,7 +116,7 @@ $(function(){
 		$(".edit-info1").css("display", "none");
 		$(".edit-info3").css("display", "none");
 	});
-	$(".click6").click(function() {
+ 	$(".click6").click(function() {
 		$(".mypage-alldiv").css("display", "none");
 		$(".mypage-questiondiv").css("display", "none");
 		$(".mypage-Likediv").css("display", "none");
@@ -144,9 +151,27 @@ $("#file").on('change',function(){
 let userName = "<%=memberLoggedIn.getMemberId().equals("dddd") ? "상담사" : "유저"%>";
 /* talkJS */
 (function(t,a,l,k,j,s){
-s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";a.head.appendChild(s)
-;k=t.Promise;t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});l
-.push([f])},catch:function(){return k&&new k()},c:l}};})(window,document,[]);
+	s=a.createElement('script');
+	s.async=1;s.src="https://cdn.talkjs.com/talk.js";
+	a.head.appendChild(s);
+	k=t.Promise;
+	t.Talk = {
+		v:3,
+		ready:{
+			then:function(f){
+				if(k)
+					return new k(function(r,e){
+						l.push([f,r,e])
+					});
+				l.push([f])
+			},
+			catch:function(){
+				return k&&new k()
+			},
+			c:l
+		}
+	};
+})(window,document,[]);
 Talk.ready.then(function() {
     var me = new Talk.User({
         id: "<%=memberLoggedIn.getMemberId()%>",
@@ -214,6 +239,8 @@ conversation.setAttributes({
 	<a class="click1">모두보기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 	<a class="click2">나의 질문목록</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<a class="click3">좋아요</a>
+	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a class="click6">최근 본 방</a>-->
 </div>
 <div class="sub2">
 	<a class="click4">회원정보수정</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -289,7 +316,7 @@ conversation.setAttributes({
 				<div class="HasnotLikelistallview">좋아요 목록이 없습니다.</div>
 				<%
 					} else {
-				for (RoomBoard b : likeList) {
+						for (RoomBoard b : likeList) {
 				%>
 				<a class="noneHover"
 					href="<%=request.getContextPath()%>/board/boardView?board_num=<%=b.getBoard_num()%>&br=<%=b.getBr_cp_id()%>">
@@ -302,13 +329,15 @@ conversation.setAttributes({
 				<%
 					}
 
-				}
+					}
 				%>
 			</div>
 			<div class="allviewPageBar" id='pageBar'>
 				<%=pageBar%>
-
 			</div>
+			<!--<div>
+				<p class="RecentlyViewRoom">최근 본 방 목록<span id="conLink1" class="click6">전체보기</span></p>
+			</div>-->
 		</div>
 	</div>
 </div>
@@ -420,7 +449,7 @@ conversation.setAttributes({
 			<!-- 		<div class="ClickedLikeListShow"> -->
 			<%
 				} else {
-			for (RoomBoard b : likeList) {
+					for (RoomBoard b : likeList) {
 			%>
 			<section id="my_pageRoomImg">
 				<a
@@ -436,7 +465,7 @@ conversation.setAttributes({
 			<%
 				}
 
-			}
+				}
 			%>
 			<div class="ClickedLikeListPageBar" id='pageBar'>
 				<%=pageBar%>

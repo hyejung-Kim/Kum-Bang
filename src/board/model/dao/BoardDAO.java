@@ -1,6 +1,5 @@
 ﻿package board.model.dao;
 
-
 import static common.JDBCTemplate.*;
 
 import java.io.FileNotFoundException;
@@ -562,7 +561,7 @@ public class BoardDAO {
 		return list;
 	}
 
-	public int selectTotalContents(Connection conn, String room_val, String tax_val, int startPrice, int endPrice, int fee, int startSize, int endSize) {
+	public int selectTotalContents(Connection conn, String room_val, String tax_val, int price, int fee) {
 		int totalContents = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -580,9 +579,8 @@ public class BoardDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,room_val );
 			pstmt.setString(2, tax_val );
-			pstmt.setInt(3, startPrice);
-			pstmt.setInt(4, endPrice);
-			pstmt.setInt(5, fee );
+			pstmt.setInt(3, price);
+			pstmt.setInt(4, fee);
 			
 			rset = pstmt.executeQuery();
 			if(rset.next())
